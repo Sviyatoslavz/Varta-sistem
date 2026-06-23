@@ -1,0 +1,3298 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VARTA SYSTEMS — Захист починається з виявлення</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23080C10' rx='16'/%3E%3Cpolygon points='50,6 88,28 88,72 50,94 12,72 12,28' fill='%230D1318' stroke='%2300E5A0' stroke-width='2.5'/%3E%3Cpolygon points='50,14 80,31 80,65 50,82 20,65 20,31' fill='none' stroke='%2300E5A0' stroke-width='1.2' opacity='0.4'/%3E%3Cpath d='M50 20 L74 33 L74 57 Q74 74 50 82 Q26 74 26 57 L26 33 Z' fill='%23080C10' stroke='%2300E5A0' stroke-width='1' opacity='0.8'/%3E%3Ccircle cx='50' cy='51' r='7' fill='none' stroke='%2300E5A0' stroke-width='1' opacity='0.5'/%3E%3Ccircle cx='50' cy='51' r='14' fill='none' stroke='%2300E5A0' stroke-width='0.7' opacity='0.25'/%3E%3Cline x1='50' y1='33' x2='50' y2='69' stroke='%2300E5A0' stroke-width='0.8' opacity='0.4'/%3E%3Cline x1='32' y1='51' x2='68' y2='51' stroke='%2300E5A0' stroke-width='0.8' opacity='0.4'/%3E%3Ccircle cx='50' cy='51' r='3.5' fill='%2300E5A0'/%3E%3Ccircle cx='63' cy='40' r='2.5' fill='%2300E5A0' opacity='0.9'/%3E%3Ccircle cx='40' cy='63' r='1.8' fill='%2300E5A0' opacity='0.5'/%3E%3Cline x1='12' y1='28' x2='22' y2='22' stroke='%2300E5A0' stroke-width='2' opacity='0.6'/%3E%3Cline x1='88' y1='28' x2='78' y2='22' stroke='%2300E5A0' stroke-width='2' opacity='0.6'/%3E%3Cline x1='12' y1='72' x2='22' y2='78' stroke='%2300E5A0' stroke-width='2' opacity='0.6'/%3E%3Cline x1='88' y1='72' x2='78' y2='78' stroke='%2300E5A0' stroke-width='2' opacity='0.6'/%3E%3C/svg%3E">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #080C10;
+    --bg2: #0D1318;
+    --bg3: #121A22;
+    --border: #1E2D3D;
+    --accent: #00E5A0;
+    --accent2: #007A54;
+    --text: #C8D8E8;
+    --text-dim: #5A7A8A;
+    --white: #EDF4F8;
+    --danger: #FF4444;
+    --warn: #FFB800;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,12,16,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 64px;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo svg { display: block; }
+
+  nav { display: flex; align-items: center; gap: 4px; }
+
+  nav a {
+    color: var(--text-dim); text-decoration: none;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+    padding: 8px 14px; border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  nav a:hover { color: var(--white); background: var(--bg3); }
+
+  .lang-switcher {
+    display: flex; gap: 4px; margin-left: 8px;
+    padding-left: 16px; border-left: 1px solid var(--border);
+  }
+
+  .lang-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    padding: 4px 10px; border-radius: 3px;
+    border: 1px solid var(--border);
+    background: transparent; color: var(--text-dim);
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .lang-btn.active, .lang-btn:hover {
+    border-color: var(--accent); color: var(--accent);
+    background: rgba(0,229,160,0.06);
+  }
+
+  .cta-header {
+    margin-left: 16px;
+    background: var(--accent); color: var(--bg);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+    padding: 9px 20px; border-radius: 4px;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .cta-header:hover { opacity: 0.85; }
+
+  .burger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px;
+  }
+
+  .burger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--text); border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 100px 24px 60px;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1280px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center; position: relative; z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    border: 1px solid rgba(0,229,160,0.3);
+    padding: 6px 14px; border-radius: 2px;
+    margin-bottom: 24px; letter-spacing: 1px;
+  }
+
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(42px, 5vw, 72px);
+    font-weight: 700; line-height: 1.05;
+    color: var(--white); letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 em {
+    font-style: normal; color: var(--accent);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 16px; color: var(--text-dim);
+    margin: 20px 0 36px; max-width: 440px; line-height: 1.7;
+  }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent); color: var(--bg);
+    font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
+    padding: 14px 28px; border-radius: 4px;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: opacity 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-outline {
+    background: transparent; color: var(--text);
+    font-size: 14px; font-weight: 500;
+    padding: 14px 28px; border-radius: 4px;
+    border: 1px solid var(--border); cursor: pointer;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Hero radar visual */
+  .hero-visual {
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .radar-container {
+    position: relative; width: 360px; height: 360px;
+  }
+
+  .radar-ring {
+    position: absolute; border: 1px solid rgba(0,229,160,0.15);
+    border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+
+  .radar-ring:nth-child(1) { width: 80px; height: 80px; }
+  .radar-ring:nth-child(2) { width: 160px; height: 160px; border-color: rgba(0,229,160,0.1); }
+  .radar-ring:nth-child(3) { width: 240px; height: 240px; border-color: rgba(0,229,160,0.07); }
+  .radar-ring:nth-child(4) { width: 320px; height: 320px; border-color: rgba(0,229,160,0.05); }
+
+  .radar-sweep {
+    position: absolute;
+    width: 50%; height: 50%;
+    top: 0; left: 50%;
+    transform-origin: 0% 100%;
+    background: conic-gradient(from 0deg, transparent 80%, rgba(0,229,160,0.25) 100%);
+    animation: sweep 3s linear infinite;
+  }
+
+  @keyframes sweep {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .radar-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px; height: 12px;
+    background: var(--accent); border-radius: 50%;
+    box-shadow: 0 0 20px var(--accent);
+  }
+
+  .radar-cross {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px; height: 1px;
+    background: rgba(0,229,160,0.1);
+  }
+
+  .radar-cross::after {
+    content: ''; position: absolute;
+    width: 1px; height: 320px;
+    background: rgba(0,229,160,0.1);
+    left: 50%; top: -160px;
+  }
+
+  .radar-blip {
+    position: absolute; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+    animation: blip 3s infinite;
+  }
+
+  .radar-blip:nth-child(6) { top: 28%; left: 62%; animation-delay: 0.5s; }
+  .radar-blip:nth-child(7) { top: 55%; left: 75%; animation-delay: 1.2s; }
+  .radar-blip:nth-child(8) { top: 38%; left: 35%; animation-delay: 2s; }
+
+  @keyframes blip {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+
+  .radar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--accent);
+    position: absolute; bottom: -40px; left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: 2px; white-space: nowrap;
+  }
+
+  /* Stats strip */
+  .stats-strip {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stats-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    padding: 0 24px;
+  }
+
+  .stat-item {
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 40px; font-weight: 700;
+    color: var(--white); line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-num span { color: var(--accent); }
+
+  .stat-label {
+    font-size: 12px; color: var(--text-dim);
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+
+  /* ── SECTIONS ── */
+  .section { padding: 80px 24px; }
+
+  .section-inner { max-width: 1280px; margin: 0 auto; }
+
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 48px; padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1;
+  }
+
+  .section-link {
+    color: var(--accent); text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; gap: 6px;
+    white-space: nowrap; transition: gap 0.2s;
+  }
+
+  .section-link:hover { gap: 10px; }
+
+  /* ── CATALOG ── */
+  .cat-tabs {
+    display: flex; gap: 4px; margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .cat-tab {
+    font-size: 13px; font-weight: 500;
+    padding: 8px 18px; border-radius: 3px;
+    border: 1px solid var(--border);
+    background: transparent; color: var(--text-dim);
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .cat-tab.active {
+    border-color: var(--accent); color: var(--accent);
+    background: rgba(0,229,160,0.06);
+  }
+
+  .cat-tab:hover:not(.active) { border-color: #2A3F50; color: var(--text); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .product-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+    cursor: pointer;
+  }
+
+  .product-card:hover {
+    border-color: rgba(0,229,160,0.4);
+    transform: translateY(-2px);
+  }
+
+  .product-card.featured {
+    border-color: rgba(0,229,160,0.4);
+    border-width: 1.5px;
+    grid-column: 1 / -1;
+  }
+
+  .product-card.featured .product-img {
+    height: 260px;
+    position: relative;
+  }
+
+  .product-card.featured .product-body {
+    padding: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .product-card.featured .product-name {
+    font-size: 24px; margin-bottom: 10px;
+  }
+
+  .product-card.featured .product-desc {
+    font-size: 14px; min-height: unset; margin-bottom: 20px;
+  }
+
+  .flagship-banner {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .flagship-stat { text-align: center; }
+  .flagship-stat-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1;
+  }
+  .flagship-stat-label {
+    font-size: 10px; color: var(--text-dim); letter-spacing: 1px; margin-top: 2px;
+  }
+
+  .product-img {
+    height: 200px; position: relative; overflow: hidden;
+    background: #080C10;
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .product-img svg { max-height: 180px; width: auto; }
+
+  .product-badge {
+    position: absolute; top: 12px; left: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--accent);
+    background: rgba(0,229,160,0.12);
+    border: 1px solid rgba(0,229,160,0.3);
+    padding: 3px 10px; border-radius: 2px;
+    letter-spacing: 1px;
+  }
+
+  .product-nato {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; color: #FFB800;
+    background: rgba(255,184,0,0.1);
+    border: 1px solid rgba(255,184,0,0.3);
+    padding: 3px 8px; border-radius: 2px;
+    letter-spacing: 1px;
+  }
+
+  .product-body { padding: 20px; }
+
+  .product-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 19px; font-weight: 600;
+    color: var(--white); margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .product-desc {
+    font-size: 13px; color: var(--text-dim);
+    line-height: 1.6; margin-bottom: 16px;
+    min-height: 52px;
+  }
+
+  .product-specs {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .spec-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--text-dim);
+    background: var(--bg3); border: 1px solid var(--border);
+    padding: 3px 10px; border-radius: 2px;
+  }
+
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px; border-top: 1px solid var(--border);
+  }
+
+  .product-price {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--white);
+  }
+
+  .product-price-label {
+    font-size: 11px; color: var(--text-dim);
+    display: block; margin-bottom: 2px;
+  }
+
+  .btn-card {
+    font-size: 12px; font-weight: 600;
+    padding: 8px 16px; border-radius: 3px;
+    border: 1px solid var(--accent);
+    background: transparent; color: var(--accent);
+    cursor: pointer; transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-card:hover {
+    background: var(--accent); color: var(--bg);
+  }
+
+  /* ── FEATURES ── */
+  .features-bg { background: var(--bg2); }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+  }
+
+  .feature-item {
+    background: var(--bg2);
+    padding: 36px 28px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+  }
+
+  .feature-icon {
+    width: 56px; height: 56px;
+    background: rgba(0,229,160,0.07);
+    border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  .feature-icon svg { width: 28px; height: 28px; }
+
+  .feature-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--white); margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .feature-desc {
+    font-size: 13px; color: var(--text-dim); line-height: 1.7;
+    text-align: center;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute; top: 24px; left: 60px; right: 60px; height: 1px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent), var(--accent2));
+    opacity: 0.3;
+  }
+
+  .step {
+    position: relative; text-align: center; padding: 0 12px;
+  }
+
+  .step-num {
+    width: 48px; height: 48px;
+    background: var(--bg2); border: 1px solid var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--accent);
+    font-weight: 500;
+    position: relative; z-index: 1;
+  }
+
+  .step-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px; font-weight: 600;
+    color: var(--white); margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 13px; color: var(--text-dim); line-height: 1.6;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-size: 15px; color: var(--text);
+    line-height: 1.8; margin-bottom: 16px;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-highlight {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--white); line-height: 1.4;
+    padding-left: 20px;
+    border-left: 3px solid var(--accent);
+    margin: 28px 0;
+  }
+
+  .about-visual {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 32px;
+  }
+
+  .terminal-bar {
+    display: flex; gap: 6px; margin-bottom: 20px;
+  }
+
+  .terminal-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+
+  .terminal-dot:nth-child(1) { background: #FF5F57; }
+  .terminal-dot:nth-child(2) { background: #FFBD2E; }
+  .terminal-dot:nth-child(3) { background: #28C840; }
+
+  .terminal-body {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; line-height: 2;
+    color: var(--text-dim);
+  }
+
+  .t-green { color: var(--accent); }
+  .t-white { color: var(--white); }
+  .t-dim { color: #3A5060; }
+  .t-warn { color: var(--warn); }
+
+  /* ── CONTACT ── */
+  .contact-bg { background: var(--bg2); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  }
+
+  .contact-info h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--white); margin-bottom: 16px;
+  }
+
+  .contact-info p {
+    font-size: 14px; color: var(--text-dim); line-height: 1.7; margin-bottom: 32px;
+  }
+
+  .contact-items { display: flex; flex-direction: column; gap: 16px; }
+
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px; color: var(--text);
+  }
+
+  .contact-item-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--text-dim);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 4px; color: var(--white);
+    font-family: 'Inter', sans-serif; font-size: 14px;
+    padding: 12px 14px; outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-select { cursor: pointer; }
+
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    background: var(--accent); color: var(--bg);
+    font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
+    padding: 14px 28px; border-radius: 4px;
+    border: none; cursor: pointer;
+    transition: opacity 0.2s; align-self: flex-start;
+  }
+
+  .form-submit:hover { opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 48px 24px 24px;
+  }
+
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px; margin-bottom: 40px;
+  }
+
+  .footer-brand p {
+    font-size: 13px; color: var(--text-dim);
+    line-height: 1.7; margin-top: 16px;
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--white); letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-col ul li a {
+    font-size: 13px; color: var(--text-dim);
+    text-decoration: none; transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--accent); }
+
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 24px; border-top: 1px solid var(--border);
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-copy {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--text-dim);
+  }
+
+  .footer-legal {
+    display: flex; gap: 20px;
+  }
+
+  .footer-legal a {
+    font-size: 12px; color: var(--text-dim);
+    text-decoration: none; transition: color 0.2s;
+  }
+
+  .footer-legal a:hover { color: var(--accent); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 24px;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; max-width: 600px; width: 100%;
+    max-height: 80vh; overflow-y: auto;
+  }
+
+  .modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px; font-weight: 600; color: var(--white);
+  }
+
+  .modal-close {
+    background: none; border: none;
+    color: var(--text-dim); font-size: 22px;
+    cursor: pointer; line-height: 1; transition: color 0.2s;
+  }
+
+  .modal-close:hover { color: var(--white); }
+
+  .modal-body { padding: 24px; }
+
+  .modal-img {
+    height: 220px; background: #080C10;
+    border-radius: 4px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+  }
+
+  .modal-img svg { max-height: 200px; width: auto; }
+
+  .modal-specs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin: 16px 0 20px;
+  }
+
+  .modal-spec {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 4px; padding: 12px 14px;
+  }
+
+  .modal-spec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--text-dim);
+    letter-spacing: 1px; margin-bottom: 4px;
+  }
+
+  .modal-spec-value {
+    font-size: 14px; color: var(--white); font-weight: 500;
+  }
+
+  .modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 12px; align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ── PROTECTION SCENE ── */
+  .scene-section {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .scene-inner {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    min-height: 480px;
+  }
+
+  .scene-text {
+    padding: 56px 40px;
+    display: flex; flex-direction: column; justify-content: center;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    position: relative; z-index: 1;
+  }
+
+  .scene-text .section-eyebrow { margin-bottom: 10px; }
+  .scene-text .section-title { margin-bottom: 20px; line-height: 1.15; }
+
+  .scene-desc {
+    font-size: 13px; color: var(--text-dim);
+    line-height: 1.8; margin-bottom: 36px;
+  }
+
+  .scene-stats {
+    display: flex; flex-direction: column; gap: 20px;
+  }
+
+  .scene-stat {
+    display: flex; align-items: center; gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scene-stat:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .scene-stat-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--accent); line-height: 1;
+    min-width: 80px;
+  }
+
+  .scene-stat-label {
+    font-size: 12px; color: var(--text-dim);
+    letter-spacing: 0.5px;
+  }
+
+  .scene-visual {
+    position: relative; overflow: hidden;
+    background: #040810;
+  }
+
+  .scene-visual svg {
+    width: 100%; height: 100%;
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .scene-inner { grid-template-columns: 1fr; }
+    .scene-text { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 24px; }
+    .scene-visual { height: 280px; }
+    .scene-stats { flex-direction: row; flex-wrap: wrap; }
+    .scene-stat { border-bottom: none; border-right: 1px solid var(--border); padding-right: 20px; padding-bottom: 0; }
+    .scene-stat:last-child { border-right: none; }
+  }
+  .mobile-nav {
+    display: none;
+    position: fixed; inset: 0; z-index: 90;
+    background: var(--bg); padding: 80px 24px 24px;
+    flex-direction: column; gap: 4px;
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 24px; font-weight: 600;
+    color: var(--text); text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+
+  .mobile-nav a:hover { color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav, .cta-header { display: none; }
+    .burger { display: flex; }
+
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hero-sub { margin-left: auto; margin-right: auto; }
+    .hero-actions { justify-content: center; }
+    .hero-visual { display: none; }
+
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .features-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps::before { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo" onclick="closeMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" height="42">
+        <defs>
+          <filter id="hglow"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- Hex mark -->
+        <polygon points="26,3 46,14 46,36 26,47 6,36 6,14" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.2"/>
+        <polygon points="26,8 42,17 42,33 26,42 10,33 10,17" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.45"/>
+        <path d="M26 12 L40 20 L40 31 Q40 39 26 44 Q12 39 12 31 L12 20 Z" fill="#080C10" stroke="#00E5A0" stroke-width="0.7" opacity="0.8"/>
+        <circle cx="26" cy="28" r="4" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.5"/>
+        <circle cx="26" cy="28" r="7" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.28"/>
+        <circle cx="26" cy="28" r="10" fill="none" stroke="#00E5A0" stroke-width="0.3" opacity="0.12"/>
+        <line x1="26" y1="18" x2="26" y2="38" stroke="#00E5A0" stroke-width="0.5" opacity="0.4"/>
+        <line x1="16" y1="28" x2="36" y2="28" stroke="#00E5A0" stroke-width="0.5" opacity="0.4"/>
+        <circle cx="26" cy="28" r="1.8" fill="#00E5A0" filter="url(#hglow)"/>
+        <circle cx="32" cy="22" r="1.2" fill="#00E5A0" opacity="0.9" filter="url(#hglow)"/>
+        <circle cx="21" cy="34" r="0.9" fill="#00E5A0" opacity="0.5"/>
+        <line x1="6" y1="14" x2="11" y2="11" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+        <line x1="46" y1="14" x2="41" y2="11" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+        <line x1="6" y1="36" x2="11" y2="39" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+        <line x1="46" y1="36" x2="41" y2="39" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+        <!-- Wordmark -->
+        <text x="56" y="30" font-family="Arial Narrow,Arial,sans-serif" font-size="24" font-weight="900" fill="#EDF4F8" letter-spacing="2">VARTA</text>
+        <text x="58" y="42" font-family="Arial Narrow,Arial,sans-serif" font-size="12" font-weight="700" fill="#00E5A0" letter-spacing="5">SYSTEMS</text>
+        <!-- Vertical divider -->
+        <line x1="55" y1="10" x2="55" y2="46" stroke="#1E2D3D" stroke-width="0.8"/>
+      </svg>
+    </a>
+
+    <nav>
+      <a href="#catalog" id="nav-catalog">Каталог</a>
+      <a href="#about" id="nav-about">Про нас</a>
+      <a href="#how" id="nav-how">Як це працює</a>
+      <a href="#contact" id="nav-contact">Контакти</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('ua')">UA</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="#contact" class="cta-header" id="cta-header-btn">Зв'язатись</a>
+      <div class="burger" onclick="toggleMenu()" id="burger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#catalog" onclick="closeMenu()" id="m-catalog">Каталог</a>
+  <a href="#about" onclick="closeMenu()" id="m-about">Про нас</a>
+  <a href="#how" onclick="closeMenu()" id="m-how">Як це працює</a>
+  <a href="#contact" onclick="closeMenu()" id="m-contact">Контакти</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge" id="hero-badge">● АКТИВНА СИСТЕМА ВИЯВЛЕННЯ</div>
+      <h1 id="hero-h1">Захист<em>починається<br>з виявлення</em></h1>
+      <p class="hero-sub" id="hero-sub">
+        Детектори дронів, антени та системи радіоелектронної розвідки для Збройних Сил України. Виробництво в Україні.
+      </p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn-primary" id="hero-cta1">
+          Переглянути каталог →
+        </a>
+        <a href="#contact" class="btn-outline" id="hero-cta2">
+          Запит на поставку
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="radar-container">
+        <div class="radar-ring"></div>
+        <div class="radar-ring"></div>
+        <div class="radar-ring"></div>
+        <div class="radar-ring"></div>
+        <div class="radar-cross"></div>
+        <div class="radar-sweep"></div>
+        <div class="radar-center"></div>
+        <div class="radar-blip"></div>
+        <div class="radar-blip"></div>
+        <div class="radar-blip"></div>
+        <div class="radar-label" id="radar-label">// DRONE DETECTION ACTIVE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num"><span>50</span>+</div>
+      <div class="stat-label" id="stat1">Замовлень поставлено</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>4</span></div>
+      <div class="stat-label" id="stat2">Категорії продукції</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>100%</span></div>
+      <div class="stat-label" id="stat3">Виробництво в Україні</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>24/7</span></div>
+      <div class="stat-label" id="stat4">Технічна підтримка</div>
+    </div>
+  </div>
+</div>
+
+<!-- CATALOG -->
+<section class="section" id="catalog">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow" id="eyebrow-cat">// КАТАЛОГ ПРОДУКЦІЇ</div>
+        <h2 class="section-title" id="title-cat">Наша продукція</h2>
+      </div>
+      <a href="#contact" class="section-link" id="link-request">Зробити запит →</a>
+    </div>
+
+    <div class="cat-tabs">
+      <button class="cat-tab active" onclick="filterCat('all')" id="tab-all">Всі товари</button>
+      <button class="cat-tab" onclick="filterCat('detector')" id="tab-det">Детектори дронів</button>
+      <button class="cat-tab" onclick="filterCat('antenna')" id="tab-ant">Антени</button>
+      <button class="cat-tab" onclick="filterCat('accessory')" id="tab-acc">Аксесуари</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features-bg" id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow" id="eyebrow-feat">// ЧОМУ VARTA SYSTEMS</div>
+        <h2 class="section-title" id="title-feat">Наші переваги</h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <!-- Shield with checkmark — Combat proven -->
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 3L24 7V14C24 19.5 19.5 23.5 14 25C8.5 23.5 4 19.5 4 14V7L14 3Z" stroke="#00E5A0" stroke-width="1.5" fill="rgba(0,229,160,0.06)"/>
+            <polyline points="9,14 12.5,17.5 19,11" stroke="#00E5A0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="feature-title" id="feat1-t">Перевірено в бою</div>
+        <div class="feature-desc" id="feat1-d">Наша продукція пройшла реальні польові випробування та використовується підрозділами ЗСУ на передовій.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <!-- UA flag trident-style — Made in Ukraine -->
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="5" width="22" height="18" rx="2" stroke="#00E5A0" stroke-width="1.5" fill="rgba(0,229,160,0.06)"/>
+            <rect x="3" y="5" width="22" height="9" rx="2" fill="rgba(0,229,160,0.15)"/>
+            <!-- UA trident simplified -->
+            <line x1="14" y1="10" x2="14" y2="19" stroke="#00E5A0" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="10" y1="10" x2="10" y2="15" stroke="#00E5A0" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="18" y1="10" x2="18" y2="15" stroke="#00E5A0" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="10" y1="19" x2="18" y2="19" stroke="#00E5A0" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="feature-title" id="feat2-t">Виробництво в Україні</div>
+        <div class="feature-desc" id="feat2-d">Повний цикл виробництва на українських потужностях. Кожна одиниця проходить контроль якості перед відвантаженням.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <!-- Lightning bolt — Fast delivery -->
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="16,3 8,16 13,16 12,25 20,12 15,12" stroke="#00E5A0" stroke-width="1.5" fill="rgba(0,229,160,0.1)" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="feature-title" id="feat3-t">Швидка поставка</div>
+        <div class="feature-desc" id="feat3-d">Оперативне відвантаження по всій Україні. Пріоритетна логістика для бойових частин.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <!-- Wrench + signal — Tech support -->
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 5C15.8 5 14 6.8 14 9C14 9.6 14.1 10.2 14.4 10.7L6.5 18.6C5.8 19.3 5.8 20.4 6.5 21.1L7 21.6C7.7 22.3 8.8 22.3 9.5 21.6L17.4 13.7C17.9 13.9 18.4 14 19 14C21.2 14 23 12.2 23 10C23 9.3 22.8 8.6 22.4 8L20.2 10.2L18.8 9.5 18.1 8.1 20.3 5.9C19.6 5.3 18.8 5 18 5Z" stroke="#00E5A0" stroke-width="1.3" fill="rgba(0,229,160,0.06)" stroke-linejoin="round"/>
+            <!-- Signal arcs -->
+            <path d="M4 8 Q5 6 7 8" stroke="#00E5A0" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <path d="M3 6 Q5 3 8 6" stroke="#00E5A0" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="feature-title" id="feat4-t">Технічна підтримка</div>
+        <div class="feature-desc" id="feat4-d">Команда інженерів на зв'язку 24/7. Надаємо інструкції, навчання та сервісне обслуговування.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <!-- Document with NATO star — Official docs -->
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="3" width="15" height="19" rx="2" stroke="#00E5A0" stroke-width="1.5" fill="rgba(0,229,160,0.06)"/>
+            <line x1="8" y1="9" x2="17" y2="9" stroke="#00E5A0" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="8" y1="13" x2="17" y2="13" stroke="#00E5A0" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <line x1="8" y1="17" x2="13" y2="17" stroke="#00E5A0" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <!-- NATO star badge -->
+            <circle cx="20" cy="20" r="5" fill="#0D1318" stroke="#00E5A0" stroke-width="1"/>
+            <text x="20" y="23" font-family="monospace" font-size="6" fill="#00E5A0" text-anchor="middle">★</text>
+          </svg>
+        </div>
+        <div class="feature-title" id="feat5-t">Офіційні документи</div>
+        <div class="feature-desc" id="feat5-d">Повний пакет документів для держзакупівель. Підтримуємо НАТО-кодифікацію на окремі позиції.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <!-- Atom/circuit — R&D -->
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="2.5" fill="#00E5A0" opacity="0.8"/>
+            <ellipse cx="14" cy="14" rx="10" ry="4.5" stroke="#00E5A0" stroke-width="1.2" fill="none" opacity="0.7"/>
+            <ellipse cx="14" cy="14" rx="10" ry="4.5" stroke="#00E5A0" stroke-width="1.2" fill="none" opacity="0.5" transform="rotate(60 14 14)"/>
+            <ellipse cx="14" cy="14" rx="10" ry="4.5" stroke="#00E5A0" stroke-width="1.2" fill="none" opacity="0.5" transform="rotate(120 14 14)"/>
+            <circle cx="14" cy="4.5" r="1.5" fill="#00E5A0" opacity="0.6"/>
+            <circle cx="22.6" cy="19.2" r="1.5" fill="#00E5A0" opacity="0.4"/>
+            <circle cx="5.4" cy="19.2" r="1.5" fill="#00E5A0" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="feature-title" id="feat6-t">Постійний R&D</div>
+        <div class="feature-desc" id="feat6-d">Безперервна розробка нових рішень відповідно до змін тактичної обстановки та нових загроз.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow" id="eyebrow-how">// ПРОЦЕС РОБОТИ</div>
+        <h2 class="section-title" id="title-how">Від запиту до поставки</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title" id="step1-t">Запит</div>
+        <div class="step-desc" id="step1-d">Зв'яжіться з нами через форму або Telegram. Опишіть потребу та кількість.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title" id="step2-t">Технічна консультація</div>
+        <div class="step-desc" id="step2-d">Наш спеціаліст підбере оптимальне рішення під ваше завдання.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title" id="step3-t">Оформлення</div>
+        <div class="step-desc" id="step3-d">Договір, рахунок, пакет документів для держзакупівлі або прямої закупівлі.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title" id="step4-t">Поставка</div>
+        <div class="step-desc" id="step4-d">Відвантаження в узгоджені терміни. Інструктаж та технічна підтримка після поставки.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAME PROMO -->
+<section class="section features-bg" id="game">
+  <div class="section-inner" style="padding-top:48px;padding-bottom:48px;">
+    <div class="section-eyebrow" style="margin-bottom:12px;">// ІГРОВИЙ РЕЖИМ</div>
+    <h2 class="section-title" style="margin-bottom:16px;">🎮 Гра дня — Зняти Стрес</h2>
+    <p style="font-size:14px;color:var(--text-dim);line-height:1.8;margin-bottom:32px;max-width:560px;">Важкий день? Зупини Іскандер власноруч. Симулятор перехоплення БПЛА на основі реальних систем VARTA. 10 рівнів від FPV до Іскандера — останній без зброї, лише таран!</p>
+
+    <!-- Radar preview card -->
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:24px;max-width:500px;">
+      <div style="background:#040810;padding:28px;text-align:center;cursor:pointer;" onclick="openGameModal()">
+        <svg viewBox="0 0 240 180" width="100%" style="max-width:280px;display:block;margin:0 auto;">
+          <defs>
+            <radialGradient id="rg3" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#00E5A0" stop-opacity="0.14"/>
+              <stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="240" height="180" fill="#030608"/>
+          <ellipse cx="120" cy="90" rx="115" ry="86" fill="url(#rg3)"/>
+          <circle cx="120" cy="90" r="22" fill="none" stroke="#00E5A0" stroke-width="0.7" opacity="0.5"/>
+          <circle cx="120" cy="90" r="44" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.32"/>
+          <circle cx="120" cy="90" r="66" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.2"/>
+          <circle cx="120" cy="90" r="88" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.1"/>
+          <line x1="120" y1="4" x2="120" y2="176" stroke="#00E5A0" stroke-width="0.4" opacity="0.18"/>
+          <line x1="4"   y1="90" x2="236" y2="90"  stroke="#00E5A0" stroke-width="0.4" opacity="0.18"/>
+          <line x1="120" y1="90" x2="192" y2="34" stroke="#00E5A0" stroke-width="1.4" opacity="0.7">
+            <animateTransform attributeName="transform" type="rotate" from="0 120 90" to="360 120 90" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <circle cx="166" cy="52" r="4" fill="#FF4444"><animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/></circle>
+          <circle cx="70"  cy="128" r="3.5" fill="#FFB800"><animate attributeName="opacity" values="0;0.9;0" dur="1.9s" begin="0.7s" repeatCount="indefinite"/></circle>
+          <circle cx="188" cy="112" r="3" fill="#FF4444"><animate attributeName="opacity" values="0;0.8;0" dur="2.1s" begin="1.1s" repeatCount="indefinite"/></circle>
+          <circle cx="120" cy="90" r="3" fill="#00E5A0"/>
+          <text x="170" y="48" font-family="monospace" font-size="8" fill="#FF4444" opacity="0.85">FPV</text>
+          <text x="36"  y="124" font-family="monospace" font-size="8" fill="#FFB800">ISKANDER</text>
+          <text x="162" y="108" font-family="monospace" font-size="8" fill="#FF4444" opacity="0.7">SHAHED</text>
+        </svg>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#3A5060;margin-top:14px;letter-spacing:2px;">▶ НАТИСНІТЬ ДЛЯ СТАРТУ</div>
+      </div>
+      <!-- Stats row -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);">
+        <div style="padding:14px;text-align:center;border-right:1px solid var(--border);">
+          <div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#00E5A0;line-height:1;">10</div>
+          <div style="font-size:9px;color:#5A7A8A;letter-spacing:1px;margin-top:3px;">РІВНІВ</div>
+        </div>
+        <div style="padding:14px;text-align:center;border-right:1px solid var(--border);">
+          <div style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#EDF4F8;line-height:1;">8</div>
+          <div style="font-size:9px;color:#5A7A8A;letter-spacing:1px;margin-top:3px;">ТИПІВ ЦІЛЕЙ</div>
+        </div>
+        <div style="padding:14px;text-align:center;">
+          <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:#FFB800;line-height:1;">ТАРАН</div>
+          <div style="font-size:9px;color:#5A7A8A;letter-spacing:1px;margin-top:3px;">РІВЕНЬ 10</div>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="openGameModal()" style="background:var(--accent);color:var(--bg);font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:2px;padding:16px 40px;border-radius:4px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;">▶ ГРАТИ ЗАРАЗ</button>
+  </div>
+</section>
+
+<!-- GAME MODAL OVERLAY -->
+<div id="vg-modal" style="display:none;position:fixed;inset:0;z-index:9999;flex-direction:column;background:#040810;overflow:hidden;height:100%;font-family:'Courier New',monospace;">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#040810;font-family:'Courier New',monospace;user-select:none;-webkit-user-select:none;}
+#vg-modal{touch-action:none;}
+#vg-modal canvas{display:block;}
+
+/* ── SITE HEADER ── */
+.site-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 16px;
+  background:rgba(8,12,16,0.98);
+  border-bottom:1px solid #1E2D3D;
+  flex-shrink:0;
+}
+.sh-logo{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.sh-logo svg{display:block;}
+.sh-wordmark{display:flex;flex-direction:column;line-height:1;}
+.sh-varta{font-family:'Arial Narrow',Arial,sans-serif;font-size:clamp(14px,3vw,20px);font-weight:900;color:#EDF4F8;letter-spacing:2px;}
+.sh-systems{font-family:'Arial Narrow',Arial,sans-serif;font-size:clamp(8px,1.6vw,11px);font-weight:700;color:#00E5A0;letter-spacing:5px;}
+.sh-back{
+  display:flex;align-items:center;gap:6px;
+  font-family:'Courier New',monospace;font-size:clamp(9px,1.8vw,11px);
+  color:#5A7A8A;letter-spacing:1px;text-decoration:none;
+  border:1px solid #1E2D3D;padding:6px 12px;border-radius:3px;
+  transition:color .2s,border-color .2s;
+}
+.sh-back:hover{color:#00E5A0;border-color:#00E5A0;}
+.sh-back svg{flex-shrink:0;}
+
+/* ── GAME HUD ── */
+.hud{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:5px 12px;
+  background:rgba(4,8,16,0.97);
+  border-bottom:1px solid #1E2D3D;
+  flex-shrink:0;gap:6px;
+}
+.hv{font-size:clamp(12px,3vw,20px);font-weight:700;color:#EDF4F8;line-height:1;}
+.hv.g{color:#00E5A0;}.hv.r{color:#FF4444;}.hv.y{color:#FFB800;}
+.hl{font-size:clamp(5px,1.1vw,8px);color:#3A5060;letter-spacing:1px;margin-top:1px;text-align:center;}
+.hud-stats{display:flex;gap:clamp(8px,2.5vw,24px);}
+.hw{font-size:clamp(9px,1.8vw,12px);color:#5A7A8A;letter-spacing:1px;white-space:nowrap;}
+.hw span{color:#00E5A0;font-weight:700;}
+
+#gc{flex:1;display:block;width:100%;height:100%;}
+
+.ov{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(4,8,16,0.93);z-index:20;flex-direction:column;padding:16px;overflow-y:auto;}
+.ov.h{display:none;}
+.ob{background:#0D1318;border:1px solid #1E2D3D;border-radius:8px;padding:clamp(16px,4vw,32px) clamp(18px,5vw,40px);max-width:400px;width:100%;text-align:center;}
+.ot{font-size:clamp(20px,5vw,34px);font-weight:900;color:#EDF4F8;letter-spacing:4px;margin-bottom:4px;}
+.os{font-size:clamp(8px,1.6vw,10px);color:#00E5A0;letter-spacing:3px;margin-bottom:16px;}
+.osc{font-size:clamp(26px,6vw,44px);font-weight:700;color:#00E5A0;margin:12px 0 4px;}
+.oscl{font-size:clamp(7px,1.4vw,9px);color:#5A7A8A;letter-spacing:2px;margin-bottom:16px;}
+.lvl-list{display:flex;flex-direction:column;gap:5px;margin:12px 0 18px;text-align:left;}
+.li{display:flex;align-items:center;gap:10px;background:#121A22;border:1px solid #1E2D3D;border-radius:4px;padding:6px 10px;font-size:clamp(8px,1.5vw,10px);}
+.ln{color:#EDF4F8;font-weight:700;flex:1;}
+.btn{background:#00E5A0;color:#040810;font-family:'Courier New',monospace;font-size:clamp(11px,2.4vw,14px);font-weight:700;letter-spacing:2px;padding:12px 28px;border-radius:4px;border:none;cursor:pointer;width:100%;transition:opacity .2s;}
+.btn:hover{opacity:.85;}
+.btn.red{background:#FF4444;color:#fff;}
+.btn.outline{background:transparent;color:#00E5A0;border:1px solid #00E5A0;margin-top:8px;}
+.btn.outline:hover{background:rgba(0,229,160,0.08);}
+.tip{font-size:clamp(7px,1.4vw,9px);color:#3A5060;letter-spacing:.8px;margin-top:10px;line-height:1.7;}
+.wa{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(14px,4vw,24px);color:#00E5A0;letter-spacing:3px;background:rgba(4,8,16,0.93);border:1px solid rgba(0,229,160,0.3);padding:10px 28px;border-radius:4px;z-index:15;pointer-events:none;opacity:0;transition:opacity .35s;white-space:nowrap;text-align:center;}
+.wa.show{opacity:1;}
+
+.ctrl{position:fixed;bottom:0;left:0;right:0;height:clamp(108px,28vw,150px);display:none;background:rgba(4,8,16,0.97);border-top:1px solid #1E2D3D;z-index:10;align-items:center;justify-content:space-between;padding:0 clamp(18px,5vw,44px);}
+@media(pointer:coarse){.ctrl{display:flex;}}
+.dpad{position:relative;width:clamp(108px,28vw,148px);height:clamp(108px,28vw,148px);flex-shrink:0;}
+.dring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(0,229,160,0.18);background:rgba(6,12,18,0.95);}
+.dh{position:absolute;width:100%;height:34%;top:50%;transform:translateY(-50%);background:rgba(0,229,160,0.05);border-top:1px solid rgba(0,229,160,0.12);border-bottom:1px solid rgba(0,229,160,0.12);}
+.dv{position:absolute;height:100%;width:34%;left:50%;transform:translateX(-50%);background:rgba(0,229,160,0.05);border-left:1px solid rgba(0,229,160,0.12);border-right:1px solid rgba(0,229,160,0.12);}
+.dc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22%;height:22%;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.18);z-index:2;}
+.dbtn{position:absolute;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;z-index:3;}
+.dbtn.up{top:2%;left:50%;transform:translateX(-50%);width:34%;height:32%;}
+.dbtn.dn{bottom:2%;left:50%;transform:translateX(-50%);width:34%;height:32%;}
+.dbtn.lt{left:2%;top:50%;transform:translateY(-50%);width:32%;height:34%;}
+.dbtn.rt{right:2%;top:50%;transform:translateY(-50%);width:32%;height:34%;}
+.fire-wrap{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
+.fire-btn{width:clamp(60px,16vw,84px);height:clamp(60px,16vw,84px);border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(255,68,68,.22),rgba(255,68,68,.07));border:2px solid rgba(255,68,68,.45);display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .1s;position:relative;}
+.fire-btn::before{content:'';position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(255,68,68,.22);}
+.fire-btn:active,.fire-btn.on{background:radial-gradient(circle at 40% 35%,rgba(255,68,68,.5),rgba(255,68,68,.18));border-color:#FF4444;transform:scale(.94);}
+.fire-ico{font-size:clamp(22px,6vw,32px);line-height:1;}
+.fire-lbl{font-size:clamp(6px,1.6vw,9px);color:rgba(255,68,68,.6);letter-spacing:2px;}
+.ram-hint{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(12px,3vw,18px);color:#FFDD00;letter-spacing:2px;background:rgba(4,8,16,0.95);border:2px solid #FFDD00;padding:12px 24px;border-radius:6px;z-index:16;pointer-events:none;opacity:0;transition:opacity .4s;text-align:center;line-height:1.6;}
+.ram-hint.show{opacity:1;}
+
+</style>
+
+
+<!-- SITE HEADER -->
+<div class="site-header">
+  <a href="#" onclick="closeGameModal();return false;" class="sh-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 46" width="36" height="36">
+      <polygon points="23,2 42,13 42,33 23,44 4,33 4,13" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+      <polygon points="23,7 38,16 38,30 23,39 8,30 8,16" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.45"/>
+      <path d="M23 10 L36 17 L36 28 Q36 36 23 40 Q10 36 10 28 L10 17 Z" fill="#080C10" stroke="#00E5A0" stroke-width="0.7" opacity="0.8"/>
+      <circle cx="23" cy="24" r="4" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.5"/>
+      <circle cx="23" cy="24" r="7" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.28"/>
+      <line x1="23" y1="14" x2="23" y2="34" stroke="#00E5A0" stroke-width="0.5" opacity="0.4"/>
+      <line x1="13" y1="24" x2="33" y2="24" stroke="#00E5A0" stroke-width="0.5" opacity="0.4"/>
+      <circle cx="23" cy="24" r="1.8" fill="#00E5A0"/>
+      <circle cx="29" cy="18" r="1.2" fill="#00E5A0" opacity="0.9"/>
+      <line x1="4" y1="13" x2="9" y2="10" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+      <line x1="42" y1="13" x2="37" y2="10" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+      <line x1="4" y1="33" x2="9" y2="36" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+      <line x1="42" y1="33" x2="37" y2="36" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+    </svg>
+    <div class="sh-wordmark">
+      <span class="sh-varta">VARTA</span>
+      <span class="sh-systems">SYSTEMS</span>
+    </div>
+  </a>
+  <a href="#" onclick="closeGameModal();return false;" class="sh-back">
+    <svg width="14" height="14" viewBox="0 0 14 14"><polyline points="9,2 4,7 9,12" stroke="#5A7A8A" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+    ЗАМОВИТИ
+  </a>
+</div>
+
+<!-- GAME HUD -->
+<div class="hud">
+  <div class="hud-stats">
+    <div><div class="hv g" id="h-score">0</div><div class="hl">SCORE</div></div>
+    <div><div class="hv r" id="h-lives">♥♥♥</div><div class="hl">LIVES</div></div>
+    <div><div class="hv y" id="h-kills">0</div><div class="hl">KILLS</div></div>
+  </div>
+  <div class="hw">LVL <span id="h-wave">1</span>/10</div>
+</div>
+
+<canvas id="gc"></canvas>
+
+<div class="ctrl" id="ctrl">
+  <div class="dpad" id="dpad">
+    <div class="dring"></div><div class="dh"></div><div class="dv"></div><div class="dc"></div>
+    <div class="dbtn up" id="du"><svg width="22" height="22" viewBox="0 0 22 22"><polygon points="11,3 20,18 2,18" fill="#00E5A0" opacity=".75"/></svg></div>
+    <div class="dbtn dn" id="dd"><svg width="22" height="22" viewBox="0 0 22 22"><polygon points="11,19 20,4 2,4" fill="#00E5A0" opacity=".75"/></svg></div>
+    <div class="dbtn lt" id="dl"><svg width="22" height="22" viewBox="0 0 22 22"><polygon points="3,11 18,2 18,20" fill="#00E5A0" opacity=".75"/></svg></div>
+    <div class="dbtn rt" id="dr"><svg width="22" height="22" viewBox="0 0 22 22"><polygon points="19,11 4,2 4,20" fill="#00E5A0" opacity=".75"/></svg></div>
+  </div>
+  <div class="fire-wrap">
+    <div class="fire-btn" id="fbtn"><span class="fire-ico">⊕</span></div>
+    <div class="fire-lbl">FIRE</div>
+  </div>
+</div>
+
+<div class="wa" id="wan"></div>
+<div class="ram-hint" id="ram-hint">⚠ РІВЕНЬ 10 — ІСКАНДЕР-M<br>ЗБРОЇ НЕМАЄ · ТАРАНЬТЕ ВОРОГА!<br>▶ ЛЕТІТЬ НА ЗІТКНЕННЯ</div>
+
+<!-- START -->
+<div class="ov" id="s-start">
+<div class="ob">
+  <div class="ot">VARTA</div>
+  <div class="os">// DRONE INTERCEPTOR · 10 РІВНІВ</div>
+  <div class="lvl-list">
+    <div class="li"><span>1.</span><span class="ln">FPV SCOUT</span><span style="color:#FF4444">3 попадання</span></div>
+    <div class="li"><span>2.</span><span class="ln">FPV SCOUT ×2</span><span style="color:#FF4444">4 попадання</span></div>
+    <div class="li"><span>3.</span><span class="ln">CARGO DRONE</span><span style="color:#FFB800">5 попадань</span></div>
+    <div class="li"><span>4.</span><span class="ln">CARGO ×2</span><span style="color:#FFB800">6 попадань</span></div>
+    <div class="li"><span>5.</span><span class="ln">STEALTH DRONE</span><span style="color:#9944FF">7 попадань</span></div>
+    <div class="li"><span>6.</span><span class="ln">KAMIKAZE</span><span style="color:#FF44AA">8 попадань</span></div>
+    <div class="li"><span>7.</span><span class="ln">SHAHED-136</span><span style="color:#FF8800">10 попадань</span></div>
+    <div class="li"><span>8.</span><span class="ln">CRUISE MISSILE</span><span style="color:#00AAFF">12 попадань</span></div>
+    <div class="li"><span>9.</span><span class="ln">KINZHAL UAV</span><span style="color:#FF2244">15 попадань</span></div>
+    <div class="li" style="border-color:#FFDD00"><span>10.</span><span class="ln" style="color:#FFDD00">ISKANDER-M ⚠ ТАРАН!</span><span style="color:#FFDD00">зброї немає</span></div>
+  </div>
+  <button class="btn" onclick="if(window.vgStart)window.vgStart();else startGame()">▶ СТАРТ МІСІЇ</button>
+  <button class="btn outline" onclick="closeGameModal()">← ПОВЕРНУТИСЬ ДО САЙТУ</button>
+  <div class="tip">←→↑↓ / WASD рух · SPACE вогонь · Мобіль: D-pad + FIRE</div>
+</div>
+</div>
+
+<!-- GAME OVER -->
+<div class="ov h" id="s-over">
+<div class="ob">
+  <div class="ot" style="color:#FF4444">МІСІЯ<br>ПРОВАЛЕНА</div>
+  <div class="os">// ОБ'ЄКТ НЕ ЗАХИЩЕНО</div>
+  <div class="osc" id="go-score">0</div>
+  <div class="oscl">ФІНАЛЬНИЙ РАХУНОК</div>
+  <div style="font-size:9px;color:#5A7A8A;margin-bottom:16px">РІВЕНЬ: <span id="go-wave" style="color:#EDF4F8">1</span> · ЗНИЩЕНО: <span id="go-kills" style="color:#00E5A0">0</span></div>
+  <button class="btn red" onclick="if(window.vgStart)window.vgStart();else startGame()">↺ ПОВТОРИТИ</button>
+  <button class="btn outline" onclick="closeGameModal()">← ЗАМОВИТИ СИСТЕМУ ЗАХИСТУ</button>
+</div>
+</div>
+
+<!-- WIN -->
+<div class="ov h" id="s-win">
+<div class="ob">
+  <div class="ot" style="color:#00E5A0">МІСІЯ<br>ВИКОНАНА</div>
+  <div class="os">// ІСКАНДЕР ЗНИЩЕНО 🇺🇦</div>
+  <div class="osc" id="win-score">0</div>
+  <div class="oscl">ФІНАЛЬНИЙ РАХУНОК</div>
+  <div style="font-size:9px;color:#5A7A8A;margin-bottom:16px">ВСІ 10 РІВНІВ ПРОЙДЕНО!</div>
+  <button class="btn" onclick="if(window.vgStart)window.vgStart();else startGame()">▶ ГРАТИ ЗНОВУ</button>
+  <button class="btn outline" onclick="closeGameModal()">← ЗАМОВИТИ СИСТЕМУ VARTA</button>
+</div>
+</div>
+
+
+
+</div>
+
+<script>
+function openGameModal(){
+  var m=document.getElementById('vg-modal');
+  m.style.display='flex';
+  window._vgScrollY = window.scrollY;
+  document.body.style.position='fixed';
+  document.body.style.top='-'+window._vgScrollY+'px';
+  document.body.style.width='100%';
+  document.body.style.overflow='hidden';
+  var tries=0;
+  function tryStart(){
+    tries++;
+    if(typeof window.startGame==='function') window.startGame();
+    else if(typeof window.vgStart==='function') window.vgStart();
+    else if(tries<15) setTimeout(tryStart,100);
+  }
+  setTimeout(tryStart,150);
+}
+function closeGameModal(){
+  document.getElementById('vg-modal').style.display='none';
+  // Restore scroll
+  document.body.style.position='';
+  document.body.style.top='';
+  document.body.style.width='';
+  document.body.style.overflow='';
+  window.scrollTo(0, window._vgScrollY||0);
+}
+</script>
+<script>
+(function(){
+'use strict';
+
+const C=document.getElementById('gc'),ctx=C.getContext('2d');
+let W,H;
+function resize(){
+  const ctrl=document.getElementById('ctrl');
+  const ch=window.matchMedia('(pointer:coarse)').matches?ctrl.offsetHeight:0;
+  const hudH=document.querySelector('.hud').offsetHeight;
+  const shH=document.querySelector('.site-header').offsetHeight;
+  W=C.width=window.innerWidth;
+  H=C.height=window.innerHeight-shH-hudH-ch;
+}
+window.addEventListener('resize',()=>{resize();drawBG();});
+resize();
+
+function sa(x,y,r,a1,a2){if(r>0)ctx.arc(x,y,r,a1,a2);}
+
+const keys={left:false,right:false,up:false,down:false};
+let firePending=false;
+function doFire(){firePending=true;}
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='ArrowLeft'||e.code==='KeyA')keys.left=true;
+  if(e.code==='ArrowRight'||e.code==='KeyD')keys.right=true;
+  if(e.code==='ArrowUp'||e.code==='KeyW')keys.up=true;
+  if(e.code==='ArrowDown'||e.code==='KeyS')keys.down=true;
+  if(e.code==='Space'){e.preventDefault();doFire();}
+});
+document.addEventListener('keyup',e=>{
+  if(e.code==='ArrowLeft'||e.code==='KeyA')keys.left=false;
+  if(e.code==='ArrowRight'||e.code==='KeyD')keys.right=false;
+  if(e.code==='ArrowUp'||e.code==='KeyW')keys.up=false;
+  if(e.code==='ArrowDown'||e.code==='KeyS')keys.down=false;
+});
+
+(function(){
+  function btn(id,key){
+    const el=document.getElementById(id);if(!el)return;
+    const on=()=>keys[key]=true, off=()=>keys[key]=false;
+    el.addEventListener('touchstart',e=>{e.preventDefault();on();},{passive:false});
+    el.addEventListener('touchend',e=>{e.preventDefault();off();},{passive:false});
+    el.addEventListener('touchcancel',off);
+    el.addEventListener('mousedown',on);el.addEventListener('mouseup',off);
+  }
+  btn('du','up');btn('dd','down');btn('dl','left');btn('dr','right');
+  const dp=document.getElementById('dpad');
+  if(dp){
+    dp.addEventListener('touchmove',e=>{
+      e.preventDefault();
+      const r=dp.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+      const t=e.touches[0],dx=t.clientX-cx,dy=t.clientY-cy,dead=r.width*.12;
+      keys.left=dx<-dead;keys.right=dx>dead;keys.up=dy<-dead;keys.down=dy>dead;
+    },{passive:false});
+    dp.addEventListener('touchend',()=>{keys.left=keys.right=keys.up=keys.down=false;});
+    dp.addEventListener('touchcancel',()=>{keys.left=keys.right=keys.up=keys.down=false;});
+  }
+  const fb=document.getElementById('fbtn');
+  if(fb){
+    fb.addEventListener('touchstart',e=>{e.preventDefault();doFire();fb.classList.add('on');},{passive:false});
+    fb.addEventListener('touchend',e=>{e.preventDefault();fb.classList.remove('on');},{passive:false});
+    fb.addEventListener('mousedown',()=>doFire());
+  }
+})();
+
+const LEVELS=[
+  {type:'fpv',     count:1, hp:3,  speed:1.2, color:'#FF4444', label:'РІВЕНЬ 1 — FPV SCOUT',       pts:200},
+  {type:'fpv',     count:2, hp:4,  speed:1.3, color:'#FF4444', label:'РІВЕНЬ 2 — FPV SCOUTS ×2',   pts:250},
+  {type:'cargo',   count:1, hp:5,  speed:0.8, color:'#FFB800', label:'РІВЕНЬ 3 — CARGO DRONE',      pts:400},
+  {type:'cargo',   count:2, hp:6,  speed:0.9, color:'#FFB800', label:'РІВЕНЬ 4 — CARGO DRONES ×2', pts:450},
+  {type:'stealth', count:1, hp:7,  speed:1.8, color:'#9944FF', label:'РІВЕНЬ 5 — STEALTH DRONE',   pts:600},
+  {type:'kamikaze',count:1, hp:8,  speed:1.0, color:'#FF44AA', label:'РІВЕНЬ 6 — KAMIKAZE',        pts:800},
+  {type:'shahed',  count:1, hp:10, speed:0.7, color:'#FF8800', label:'РІВЕНЬ 7 — SHAHED-136',      pts:1000},
+  {type:'cruise',  count:1, hp:12, speed:1.1, color:'#00AAFF', label:'РІВЕНЬ 8 — CRUISE MISSILE',  pts:1500},
+  {type:'kinzhal', count:1, hp:15, speed:1.6, color:'#FF2244', label:'РІВЕНЬ 9 — KINZHAL UAV',     pts:2000},
+  {type:'iskander',count:1, hp:1,  speed:0.5, color:'#FFDD00', label:'⚠ РІВЕНЬ 10 — ІСКАНДЕР · ТАРАН!', pts:5000, ram:true},
+];
+
+let bgC;
+function drawBG(){
+  if(!bgC)bgC=document.createElement('canvas');
+  bgC.width=W;bgC.height=H;
+  const b=bgC.getContext('2d');
+  const sky=b.createLinearGradient(0,0,0,H);
+  sky.addColorStop(0,'#020408');sky.addColorStop(.7,'#040C14');sky.addColorStop(1,'#091420');
+  b.fillStyle=sky;b.fillRect(0,0,W,H);
+  for(let i=0;i<140;i++){
+    const x=Math.random()*W,y=Math.random()*H*.75,r=Math.random()*.8+.1,o=Math.random()*.6+.2;
+    b.beginPath();b.arc(x,y,r,0,Math.PI*2);b.fillStyle=`rgba(255,255,255,${o})`;b.fill();
+  }
+  b.strokeStyle='rgba(0,229,160,0.03)';b.lineWidth=.5;
+  for(let x=0;x<W;x+=48){b.beginPath();b.moveTo(x,0);b.lineTo(x,H);b.stroke();}
+  for(let y=0;y<H;y+=48){b.beginPath();b.moveTo(0,y);b.lineTo(W,y);b.stroke();}
+  const base=H*.78;
+  const grd=b.createLinearGradient(0,base,0,H);
+  grd.addColorStop(0,'#0A1418');grd.addColorStop(1,'#040810');
+  b.fillStyle=grd;b.fillRect(0,base,W,H-base);
+  b.strokeStyle='rgba(0,229,160,0.1)';b.lineWidth=1;
+  b.beginPath();b.moveTo(0,base);b.lineTo(W,base);b.stroke();
+  const hg=b.createRadialGradient(W/2,base,0,W/2,base,W*.6);
+  hg.addColorStop(0,'rgba(0,229,160,0.05)');hg.addColorStop(1,'rgba(0,229,160,0)');
+  b.fillStyle=hg;b.fillRect(0,0,W,H);
+  for(let x=0;x<W;x+=Math.random()*28+10){
+    const bw=Math.random()*18+8,bh=Math.random()*H*.15+H*.04,by=base-bh;
+    b.fillStyle='#05080A';b.fillRect(x,by,bw,bh);
+    for(let wy=by+3;wy<base-3;wy+=6)
+      for(let wx=x+2;wx<x+bw-2;wx+=5)
+        if(Math.random()>.5){b.fillStyle=Math.random()>.6?'rgba(255,200,80,.45)':'rgba(100,180,255,.25)';b.fillRect(wx,wy,3,2);}
+  }
+  const ox=W/2,oy=base;
+  b.fillStyle='#0C1620';b.strokeStyle='#1E2D3D';b.lineWidth=1;
+  b.fillRect(ox-32,oy-32,64,32);b.strokeRect(ox-32,oy-32,64,32);
+  b.fillStyle='rgba(0,229,160,0.12)';b.fillRect(ox-30,oy-30,60,28);
+  b.strokeStyle='rgba(0,229,160,0.4)';b.lineWidth=1;
+  b.beginPath();b.moveTo(ox,oy-32);b.lineTo(ox,oy-56);b.stroke();
+  b.beginPath();b.arc(ox,oy-56,14,Math.PI,Math.PI*2);b.stroke();
+  b.fillStyle='rgba(0,229,160,0.8)';b.beginPath();b.arc(ox,oy-58,2,0,Math.PI*2);b.fill();
+  b.strokeStyle='rgba(0,229,160,0.08)';b.lineWidth=1;b.setLineDash([4,6]);
+  b.beginPath();b.arc(ox,oy,W*.16,Math.PI,Math.PI*2);b.stroke();b.setLineDash([]);
+}
+
+class Pt{
+  constructor(x,y,vx,vy,life,col,sz=2){Object.assign(this,{x,y,vx,vy,life,ml:life,col,sz});}
+  step(){this.x+=this.vx;this.y+=this.vy;this.vy+=.07;this.vx*=.97;this.life--;}
+  draw(){
+    const a=Math.max(0,this.life/this.ml),r=Math.max(.01,this.sz*a);
+    ctx.globalAlpha=a;ctx.fillStyle=this.col;
+    ctx.beginPath();sa(this.x,this.y,r,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+  }
+  get dead(){return this.life<=0;}
+}
+let pts=[];
+function boom(x,y,col,big){
+  const n=big?90:55;
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2,spd=Math.random()*(big?11:7)+1;
+    pts.push(new Pt(x+(Math.random()-.5)*14,y+(Math.random()-.5)*14,Math.cos(a)*spd,Math.sin(a)*spd-Math.random()*3,(big?45:28)+Math.random()*22,[col,'#FF8800','#FFB800','#FFF'][Math.floor(Math.random()*4)],Math.random()*(big?5:3)+1));
+  }
+  for(let i=0;i<(big?24:12);i++){const a=Math.random()*Math.PI*2;pts.push(new Pt(x,y,Math.cos(a)*.8,Math.sin(a)*.8-1,(big?90:55)+Math.random()*30,'rgba(40,30,20,.8)',Math.random()*(big?7:5)+2));}
+}
+function spark(x,y,col){for(let i=0;i<10;i++){const a=Math.random()*Math.PI*2,spd=Math.random()*5+1;pts.push(new Pt(x,y,Math.cos(a)*spd,Math.sin(a)*spd,12+Math.random()*8,col,Math.random()*2+.5));}}
+function thrPt(){pts.push(new Pt(P.x-18*(Math.min(W,H)/380)+(Math.random()-.5)*4,P.y+(Math.random()-.5)*3,-1.2+(Math.random()-.5)*.5,(Math.random()-.5)*.4,9+Math.random()*5,'rgba(0,229,160,.5)',Math.random()*1.5+.3));}
+function mTrail(m){pts.push(new Pt(m.x+(Math.random()-.5)*3,m.y+(Math.random()-.5)*3,(Math.random()-.5)*.4,(Math.random()-.5)*.4+.2,7+Math.random()*4,'rgba(0,229,160,.5)',Math.random()*1.4+.3));}
+
+const P={x:0,y:0,vx:0,vy:0,cd:0,inv:0};
+function sc(){return Math.min(W,H)/380;}
+
+function drawPlayer(alpha){
+  const s=sc();ctx.save();ctx.globalAlpha=Math.max(0,alpha||1);ctx.translate(P.x,P.y);ctx.scale(s,s);
+  ctx.fillStyle='#0A1410';ctx.strokeStyle='#00E5A0';ctx.lineWidth=1.2;
+  ctx.beginPath();ctx.roundRect(-16,-7,32,14,3);ctx.fill();ctx.stroke();
+  ctx.fillStyle='#00E5A0';ctx.beginPath();ctx.moveTo(16,0);ctx.lineTo(9,-6);ctx.lineTo(26,0);ctx.lineTo(9,6);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#0C1610';ctx.lineWidth=2.5;
+  [[-12,-7,-32,-20],[-12,7,-32,20],[10,-7,28,-20],[10,7,28,20]].forEach(([x1,y1,x2,y2])=>{ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();});
+  [[-32,-20],[28,-20],[-32,20],[28,20]].forEach(([rx,ry])=>{
+    ctx.strokeStyle='#1A3028';ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(rx,ry,11,3,0,0,Math.PI*2);ctx.stroke();
+    ctx.fillStyle='#00E5A0';ctx.beginPath();sa(rx,ry,1.5,0,Math.PI*2);ctx.fill();
+  });
+  ctx.fillStyle='#0C1812';ctx.strokeStyle='#00E5A0';ctx.lineWidth=.8;ctx.beginPath();sa(0,0,5,0,Math.PI*2);ctx.fill();ctx.stroke();
+  ctx.fillStyle='rgba(0,229,160,.6)';ctx.beginPath();sa(0,0,2.5,0,Math.PI*2);ctx.fill();
+  const fl=ctx.createRadialGradient(-20,0,0,-20,0,12);fl.addColorStop(0,'rgba(0,229,160,.9)');fl.addColorStop(1,'rgba(0,229,160,0)');
+  ctx.fillStyle=fl;ctx.beginPath();ctx.ellipse(-20,0,14,5,0,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+}
+
+function drawFPV(x,y,col,vx){const s=sc(),sx=(vx<0)?-s:s;ctx.save();ctx.translate(x,y);ctx.scale(sx,s);ctx.fillStyle='#100808';ctx.strokeStyle=col;ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(-14,-6,28,12,2);ctx.fill();ctx.stroke();[[-12,-6,-30,-18],[-12,6,-30,18],[12,-6,30,-18],[12,6,30,18]].forEach(([x1,y1,x2,y2])=>{ctx.strokeStyle='#200A0A';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();});[[-30,-18],[30,-18],[-30,18],[30,18]].forEach(([rx,ry])=>{ctx.strokeStyle='#301010';ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(rx,ry,10,3,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle=col;ctx.beginPath();sa(rx,ry,1.5,0,Math.PI*2);ctx.fill();});ctx.fillStyle='#180A0A';ctx.strokeStyle=col;ctx.lineWidth=.8;ctx.beginPath();sa(0,0,5,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.restore();}
+function drawCargo(x,y,col,vx){const s=sc(),sx=(vx<0)?-s:s;ctx.save();ctx.translate(x,y);ctx.scale(sx,s);ctx.fillStyle='#101008';ctx.strokeStyle=col;ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(-18,-8,36,16,3);ctx.fill();ctx.stroke();[[-16,-8,-36,-22],[-16,8,-36,22],[16,-8,36,-22],[16,8,36,22]].forEach(([x1,y1,x2,y2])=>{ctx.strokeStyle='#282808';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();});[[-36,-22],[36,-22],[-36,22],[36,22]].forEach(([rx,ry])=>{ctx.strokeStyle='#383808';ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(rx,ry,12,3.5,0,0,Math.PI*2);ctx.stroke();ctx.fillStyle=col;ctx.beginPath();sa(rx,ry,1.5,0,Math.PI*2);ctx.fill();});ctx.fillStyle='#0A0A08';ctx.strokeStyle=col;ctx.lineWidth=.8;ctx.beginPath();ctx.roundRect(-8,6,16,12,2);ctx.fill();ctx.stroke();ctx.restore();}
+function drawStealth(x,y,col,vx){const s=sc(),sx=(vx<0)?-s:s;ctx.save();ctx.translate(x,y);ctx.scale(sx,s);ctx.fillStyle='#0A0818';ctx.strokeStyle=col;ctx.lineWidth=1;ctx.beginPath();for(let i=0;i<6;i++){const a=i*Math.PI/3-Math.PI/6;i===0?ctx.moveTo(Math.cos(a)*20,Math.sin(a)*20):ctx.lineTo(Math.cos(a)*20,Math.sin(a)*20);}ctx.closePath();ctx.fill();ctx.stroke();[8,14].forEach(r=>{ctx.strokeStyle=col;ctx.lineWidth=.5;ctx.globalAlpha=.35;ctx.beginPath();sa(0,0,r,0,Math.PI*2);ctx.stroke();});ctx.globalAlpha=1;ctx.fillStyle=col;ctx.beginPath();sa(0,0,3,0,Math.PI*2);ctx.fill();ctx.restore();}
+function drawKamikaze(x,y,col,vx){const s=sc(),sx=(vx<0)?-s:s;ctx.save();ctx.translate(x,y);ctx.scale(sx,s);ctx.fillStyle='#080818';ctx.strokeStyle=col;ctx.lineWidth=1.2;ctx.beginPath();ctx.roundRect(-20,-8,40,16,3);ctx.fill();ctx.stroke();const wg=ctx.createRadialGradient(0,0,0,0,0,14);wg.addColorStop(0,'rgba(255,68,170,0.35)');wg.addColorStop(1,'rgba(255,68,170,0)');ctx.fillStyle=wg;ctx.beginPath();sa(0,0,14,0,Math.PI*2);ctx.fill();ctx.fillStyle='#180818';ctx.strokeStyle=col;ctx.lineWidth=1;ctx.beginPath();sa(0,0,7,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle=col;ctx.beginPath();sa(0,0,3,0,Math.PI*2);ctx.fill();ctx.restore();}
+function drawShahed(x,y,col,vx){const s=sc(),sx=(vx<0)?-s:s;ctx.save();ctx.translate(x,y);ctx.scale(sx,s);ctx.fillStyle='#0A1008';ctx.strokeStyle=col;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(30,0);ctx.lineTo(-10,-18);ctx.lineTo(-18,0);ctx.lineTo(-10,18);ctx.closePath();ctx.fill();ctx.stroke();const eg=ctx.createRadialGradient(-18,0,0,-18,0,10);eg.addColorStop(0,'rgba(255,136,0,0.55)');eg.addColorStop(1,'rgba(255,136,0,0)');ctx.fillStyle=eg;ctx.beginPath();sa(-18,0,10,0,Math.PI*2);ctx.fill();ctx.fillStyle=col;ctx.beginPath();sa(-18,0,3,0,Math.PI*2);ctx.fill();ctx.restore();}
+function drawCruise(x,y,col,vx){const s=sc(),sx=(vx<0)?-s:s;ctx.save();ctx.translate(x,y);ctx.scale(sx,s);ctx.fillStyle='#080C12';ctx.strokeStyle=col;ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(-22,-5,44,10,4);ctx.fill();ctx.stroke();ctx.fillStyle=col;ctx.globalAlpha=.7;ctx.beginPath();ctx.moveTo(22,0);ctx.lineTo(16,-5);ctx.lineTo(30,0);ctx.lineTo(16,5);ctx.closePath();ctx.fill();ctx.globalAlpha=1;[[-5],[5]].forEach(([oy])=>{ctx.fillStyle='#080C12';ctx.strokeStyle=col;ctx.lineWidth=.8;ctx.beginPath();ctx.moveTo(0,oy<0?-5:5);ctx.lineTo(-8,oy<0?-18:18);ctx.lineTo(-14,oy<0?-5:5);ctx.closePath();ctx.fill();ctx.stroke();});const ex=ctx.createRadialGradient(-22,0,0,-22,0,9);ex.addColorStop(0,'rgba(0,170,255,0.6)');ex.addColorStop(1,'rgba(0,170,255,0)');ctx.fillStyle=ex;ctx.beginPath();sa(-22,0,9,0,Math.PI*2);ctx.fill();ctx.restore();}
+function drawKinzhal(x,y,col,vx){const s=sc(),sx=(vx<0)?-s:s;ctx.save();ctx.translate(x,y);ctx.scale(sx,s);ctx.fillStyle='#080810';ctx.strokeStyle=col;ctx.lineWidth=1.2;ctx.beginPath();for(let i=0;i<6;i++){const a=i*Math.PI/3;i===0?ctx.moveTo(Math.cos(a)*18,Math.sin(a)*18):ctx.lineTo(Math.cos(a)*18,Math.sin(a)*18);}ctx.closePath();ctx.fill();ctx.stroke();const cg=ctx.createRadialGradient(0,0,0,0,0,10);cg.addColorStop(0,'rgba(255,34,68,0.55)');cg.addColorStop(1,'rgba(255,34,68,0)');ctx.fillStyle=cg;ctx.beginPath();sa(0,0,10,0,Math.PI*2);ctx.fill();ctx.fillStyle=col;ctx.beginPath();sa(0,0,3.5,0,Math.PI*2);ctx.fill();ctx.restore();}
+function drawIskander(x,y,col,vx){const s=sc(),sx=(vx<0)?-s:s;ctx.save();ctx.translate(x,y);ctx.scale(sx,s);ctx.fillStyle='#080810';ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(-30,-11,60,22,4);ctx.fill();ctx.stroke();ctx.fillStyle=col;ctx.globalAlpha=.5;ctx.beginPath();ctx.moveTo(30,0);ctx.lineTo(20,-11);ctx.lineTo(46,0);ctx.lineTo(20,11);ctx.closePath();ctx.fill();ctx.globalAlpha=1;[[-26,-11],[-26,11],[-20,-11],[-20,11]].forEach(([fx,fy])=>{ctx.fillStyle='#080810';ctx.strokeStyle=col;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(fx,fy);ctx.lineTo(fx-12,fy<0?fy-14:fy+14);ctx.lineTo(fx-6,fy);ctx.closePath();ctx.fill();ctx.stroke();});const eg=ctx.createRadialGradient(-30,0,0,-30,0,20);eg.addColorStop(0,'rgba(255,221,0,0.8)');eg.addColorStop(.4,'rgba(255,136,0,0.33)');eg.addColorStop(1,'rgba(255,221,0,0)');ctx.fillStyle=eg;ctx.beginPath();sa(-30,0,20,0,Math.PI*2);ctx.fill();[-8,0,8].forEach(oy=>{ctx.fillStyle=col;ctx.globalAlpha=.8;ctx.beginPath();sa(-30,oy,4,0,Math.PI*2);ctx.fill();});ctx.globalAlpha=1;ctx.restore();}
+
+const DRAWERS={fpv:drawFPV,cargo:drawCargo,stealth:drawStealth,kamikaze:drawKamikaze,shahed:drawShahed,cruise:drawCruise,kinzhal:drawKinzhal,iskander:drawIskander};
+
+function drawHPBar(e){
+  const bw=Math.max(60,80*sc()*2),bh=6,bx=e.x-bw/2,by=e.y-40*sc()-14;
+  ctx.fillStyle='rgba(0,0,0,.75)';ctx.fillRect(bx-1,by-1,bw+2,bh+2);
+  ctx.fillStyle='#1E2D3D';ctx.fillRect(bx,by,bw,bh);
+  const fr=e.hp/e.maxHp;
+  ctx.fillStyle=fr>.6?'#00E5A0':fr>.3?'#FFB800':'#FF4444';
+  ctx.fillRect(bx,by,bw*fr,bh);
+  ctx.strokeStyle=e.col;ctx.lineWidth=.8;ctx.strokeRect(bx,by,bw,bh);
+  ctx.fillStyle='#EDF4F8';ctx.font=`bold ${Math.max(11,Math.round(W*.025))}px Courier New`;ctx.textAlign='center';
+  ctx.fillText(`${e.hp}/${e.maxHp}`,e.x,by-3);
+}
+
+let missiles=[];
+function fire(){
+  if(wave===10)return;
+  if(P.cd>0||missiles.length>=3)return;
+  let nearest=null,nd=Infinity;
+  enemies.forEach(e=>{const d=Math.hypot(P.x-e.x,P.y-e.y);if(d<nd){nd=d;nearest=e;}});
+  const vx=nearest&&nearest.x<P.x?-13:13;
+  missiles.push({x:P.x+(vx>0?24:-24)*sc(),y:P.y,vx,life:110});
+  P.cd=12;
+}
+function drawMissile(m){
+  ctx.save();ctx.translate(m.x,m.y);if(m.vx<0)ctx.scale(-1,1);
+  const tg=ctx.createLinearGradient(-24,0,0,0);tg.addColorStop(0,'rgba(0,229,160,0)');tg.addColorStop(1,'rgba(0,229,160,.7)');
+  ctx.strokeStyle=tg;ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(-24,0);ctx.lineTo(0,0);ctx.stroke();
+  ctx.fillStyle='#00E5A0';ctx.beginPath();ctx.moveTo(8,0);ctx.lineTo(0,-3.5);ctx.lineTo(0,3.5);ctx.closePath();ctx.fill();
+  const hg=ctx.createRadialGradient(4,0,0,4,0,7);hg.addColorStop(0,'rgba(0,229,160,.9)');hg.addColorStop(1,'rgba(0,229,160,0)');
+  ctx.fillStyle=hg;ctx.beginPath();sa(4,0,7,0,Math.PI*2);ctx.fill();ctx.restore();
+}
+
+let enemies=[],waveTimer=0;
+function spawnLevel(lvl){
+  enemies=[];missiles=[];
+  const L=LEVELS[lvl-1];
+  for(let i=0;i<L.count;i++){
+    const fr=i%2===0;
+    const ySlot=L.count===1?H*0.15+Math.random()*H*0.5:H*0.12+(i/(L.count-1||1))*H*0.55;
+    const e={type:L.type,col:L.color,x:fr?W+60:-60,y:ySlot,vx:(fr?-1:1)*L.speed,vy:0,hp:L.hp,maxHp:L.hp,alive:true,t:0,startY:ySlot,flashT:0,hitNow:false};
+    enemies.push(e);
+  }
+  waveTimer=0;
+}
+
+function updateEnemy(e){
+  e.t++;if(e.flashT>0)e.flashT--;
+  const L=LEVELS[wave-1],spd=L.speed;
+  if(e.type==='kamikaze'||e.type==='kinzhal'){
+    const dx=P.x-e.x,dy=P.y-e.y,d=Math.hypot(dx,dy);
+    if(d>.1){e.vx+=(dx/d)*.08;e.vy+=(dy/d)*.04;}
+    const sp=Math.hypot(e.vx,e.vy),mx=spd*1.4;if(sp>mx){e.vx*=mx/sp;e.vy*=mx/sp;}
+    e.x+=e.vx;e.y+=e.vy;
+  } else if(e.type==='iskander'){
+    const dx=P.x-e.x,dy=P.y-e.y,d=Math.hypot(dx,dy);
+    if(d>.1){e.vx+=(dx/d)*.05;e.vy+=(dy/d)*.05;}
+    const sp=Math.hypot(e.vx,e.vy),mx=spd*1.3;if(sp>mx){e.vx*=mx/sp;e.vy*=mx/sp;}
+    e.x+=e.vx;e.y+=e.vy;
+  } else if(e.type==='stealth'){
+    e.x+=e.vx;if(e.t%120===0)e.targetY=H*0.1+Math.random()*H*0.6;
+    if(e.targetY!==undefined){const dy=e.targetY-e.y;e.y+=dy*.04;if(Math.abs(dy)<2)e.targetY=undefined;}
+  } else if(e.type==='cargo'||e.type==='shahed'){
+    e.x+=e.vx;e.y=e.startY+Math.sin(e.t*.025)*(e.type==='shahed'?35:25);
+  } else {
+    e.x+=e.vx;e.vy+=(Math.random()-.5)*.03;e.vy*=.95;e.y+=e.vy;
+  }
+  if(e.x<28){e.x=28;e.vx=Math.abs(e.vx);}if(e.x>W-28){e.x=W-28;e.vx=-Math.abs(e.vx);}
+  if(e.y<H*.04){e.y=H*.04;e.vy=Math.abs(e.vy)*.3;}if(e.y>H*.72){e.y=H*.72;e.vy=-Math.abs(e.vy)*.3;}
+}
+
+let gstate='menu',score=0,lives=3,wave=1,kills=0,frame=0,aid=null;
+function uhud(){
+  document.getElementById('h-score').textContent=score;
+  document.getElementById('h-lives').textContent='♥'.repeat(Math.max(0,lives));
+  document.getElementById('h-kills').textContent=kills;
+  document.getElementById('h-wave').textContent=wave;
+}
+function announce(txt,dur=2200){const el=document.getElementById('wan');el.textContent=txt;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),dur);}
+function showRamHint(show){document.getElementById('ram-hint').classList.toggle('show',show);document.getElementById('fbtn').style.opacity=show?'0.3':'1';}
+
+window.vgStart = window.startGame = function startGame(){
+  ['s-start','s-over','s-win'].forEach(id=>document.getElementById(id).classList.add('h'));
+  showRamHint(false);
+  score=0;lives=3;wave=1;kills=0;frame=0;pts=[];
+  P.x=W*.15;P.y=H/2;P.vx=0;P.vy=0;P.cd=0;P.inv=0;
+  resize();drawBG();spawnLevel(1);announce(LEVELS[0].label);uhud();gstate='playing';
+  if(aid)cancelAnimationFrame(aid);loop();
+}
+function endGame(win){
+  gstate=win?'win':'over';cancelAnimationFrame(aid);showRamHint(false);
+  if(win){document.getElementById('win-score').textContent=score;document.getElementById('s-win').classList.remove('h');}
+  else{document.getElementById('go-score').textContent=score;document.getElementById('go-wave').textContent=wave;document.getElementById('go-kills').textContent=kills;document.getElementById('s-over').classList.remove('h');}
+}
+function nextWave(){
+  if(wave>=10){setTimeout(()=>endGame(true),1400);return;}
+  wave++;setTimeout(()=>{spawnLevel(wave);announce(LEVELS[wave-1].label);if(wave===10)showRamHint(true);uhud();},2200);
+}
+
+function loop(){
+  aid=requestAnimationFrame(loop);if(gstate!=='playing')return;frame++;
+  ctx.drawImage(bgC,0,0);
+  if(keys.left)P.vx-=.85;if(keys.right)P.vx+=.85;if(keys.up)P.vy-=.85;if(keys.down)P.vy+=.85;
+  P.vx*=.80;P.vy*=.80;
+  P.x=Math.max(14,Math.min(W*.75,P.x+P.vx));P.y=Math.max(14,Math.min(H-14,P.y+P.vy));
+  if(P.cd>0)P.cd--;if(P.inv>0)P.inv--;
+  if(firePending){fire();firePending=false;}
+  waveTimer+=16;
+  enemies.forEach(e=>{if(e.alive)updateEnemy(e);});
+  if(wave===10){
+    const e=enemies.find(en=>en.alive);
+    if(e&&P.inv===0){
+      const d=Math.hypot(P.x-e.x,P.y-e.y);
+      if(d<50){boom(e.x,e.y,'#FFDD00',true);boom(P.x,P.y,'#00E5A0',false);e.alive=false;score+=LEVELS[9].pts;kills++;showRamHint(false);announce('✓ ІСКАНДЕР ЗНИЩЕНО! СЛАВА УКРАЇНІ! 🇺🇦',3000);setTimeout(()=>endGame(true),3000);gstate='cutscene';return;}
+      if(d<120){ctx.strokeStyle=`rgba(255,221,0,${.5*(1-d/120)})`;ctx.lineWidth=2;ctx.beginPath();sa(e.x,e.y,d*.8,0,Math.PI*2);ctx.stroke();}
+    }
+  }
+  enemies.forEach(e=>{
+    if(!e.alive)return;
+    if(e.flashT>0){const fg=ctx.createRadialGradient(e.x,e.y,0,e.x,e.y,45);fg.addColorStop(0,'rgba(255,255,255,0.85)');fg.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=fg;ctx.beginPath();sa(e.x,e.y,45,0,Math.PI*2);ctx.fill();}
+    const alpha=e.type==='stealth'?(0.2+Math.abs(Math.sin(e.t*.14))*.4):1;
+    ctx.globalAlpha=alpha;DRAWERS[e.type](e.x,e.y,e.col,e.vx);ctx.globalAlpha=1;
+    drawHPBar(e);
+    if((e.type==='kamikaze'||e.type==='kinzhal')&&P.inv===0){
+      if(Math.hypot(P.x-e.x,P.y-e.y)<42){boom(e.x,e.y,e.col,true);e.alive=false;lives--;P.inv=100;spark(P.x,P.y,'#00E5A0');if(lives<=0)setTimeout(()=>endGame(false),800);}
+    }
+  });
+  if(wave<10){
+    enemies.forEach(e=>{e.hitNow=false;});
+    missiles=missiles.filter(m=>{
+      m.x+=m.vx;m.life--;
+      if(m.x>W+20||m.x<-20||m.life<=0)return false;
+      if(frame%2===0)mTrail(m);
+      let hit=false;
+      for(const e of enemies){
+        if(!e.alive||e.hitNow)continue;
+        if(Math.hypot(m.x-e.x,m.y-e.y)<55){
+          e.hitNow=true;e.flashT=5;e.hp--;spark(e.x,e.y,e.col);
+          if(e.hp<=0){e.alive=false;boom(e.x,e.y,e.col,e.maxHp>=10);score+=LEVELS[wave-1].pts;kills++;}
+          hit=true;break;
+        }
+      }
+      if(!hit)drawMissile(m);return !hit;
+    });
+  }
+  const pa=P.inv>0?(Math.sin(frame*.4)>.0?1:.15):1;drawPlayer(pa);if(frame%2===0)thrPt();
+  pts.forEach(p=>{p.step();p.draw();});pts=pts.filter(p=>!p.dead);
+  const alive=enemies.filter(e=>e.alive).length;
+  if(alive===0&&enemies.length>0&&gstate==='playing'){enemies=[];nextWave();}
+  if(alive>0){ctx.save();ctx.fillStyle='rgba(8,12,16,.85)';ctx.fillRect(W-92,4,88,22);ctx.fillStyle=LEVELS[wave-1].color;ctx.font=`${Math.round(W*.018)}px Courier New`;ctx.textAlign='right';ctx.fillText(`▲ ${alive}`,W-8,20);ctx.restore();}
+  uhud();
+}
+
+drawBG();
+
+window.vgStart=window.startGame=startGame;
+window.vgEndGame=endGame;
+})();
+</script>
+
+
+
+
+<!-- SCENE SECTION -->
+<section class="section features-bg" id="scene-section" style="padding:0;border-top:1px solid var(--border);">
+  <div class="section-inner" style="padding:48px 24px;">
+    <div class="section-eyebrow" style="margin-bottom:10px;">// ЗАХИСТ ОБ'ЄКТІВ</div>
+    <h2 class="section-title" style="margin-bottom:16px;">Захист критичної<br>інфраструктури</h2>
+    <p style="font-size:13px;color:var(--text-dim);line-height:1.8;margin-bottom:28px;max-width:600px;">Системи VARTA SYSTEMS забезпечують виявлення БПЛА-загроз у реальному часі навколо промислових об'єктів та стратегічної інфраструктури.</p>
+    <!-- Stats row -->
+    <div style="display:flex;flex-wrap:wrap;gap:24px;margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:12px;padding-right:24px;border-right:1px solid var(--border);">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:28px;font-weight:700;color:var(--accent);">360°</div>
+        <div style="font-size:11px;color:var(--text-dim);">Покриття</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding-right:24px;border-right:1px solid var(--border);">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:28px;font-weight:700;color:var(--accent);">2.4км²</div>
+        <div style="font-size:11px;color:var(--text-dim);">Зона захисту</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:28px;font-weight:700;color:var(--accent);">&lt;1с</div>
+        <div style="font-size:11px;color:var(--text-dim);">Час виявлення</div>
+      </div>
+    </div>
+  </div>
+  <!-- Scene SVG — full width -->
+  <div style="width:100%;overflow:hidden;border-top:1px solid var(--border);background:#040810;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" style="display:block;max-width:100%;" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Sky gradient -->
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#040810"/>
+      <stop offset="50%" stop-color="#060C14"/>
+      <stop offset="100%" stop-color="#0A1420"/>
+    </linearGradient>
+
+    <!-- Ground gradient -->
+    <linearGradient id="ground" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0A1418"/>
+      <stop offset="100%" stop-color="#050A0C"/>
+    </linearGradient>
+
+    <!-- Dome 1 fill (large left) -->
+    <radialGradient id="dome1fill" cx="38%" cy="100%" r="65%">
+      <stop offset="0%" stop-color="#00E5A0" stop-opacity="0.07"/>
+      <stop offset="60%" stop-color="#00E5A0" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Dome 2 fill (center) -->
+    <radialGradient id="dome2fill" cx="62%" cy="100%" r="65%">
+      <stop offset="0%" stop-color="#00E5A0" stop-opacity="0.06"/>
+      <stop offset="60%" stop-color="#00E5A0" stop-opacity="0.025"/>
+      <stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Dome 3 fill (small right) -->
+    <radialGradient id="dome3fill" cx="82%" cy="100%" r="65%">
+      <stop offset="0%" stop-color="#00E5A0" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Glow filters -->
+    <filter id="glow-xs"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-sm"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-md"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-lg"><feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-xl"><feGaussianBlur stdDeviation="28" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+
+    <!-- Building warm glow -->
+    <radialGradient id="warmGlow" cx="50%" cy="100%" r="50%">
+      <stop offset="0%" stop-color="#FFB800" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#FFB800" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Horizon glow -->
+    <radialGradient id="horizGlow" cx="50%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#00E5A0" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Stars pattern -->
+    <pattern id="stars" width="200" height="200" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="20" r="0.6" fill="white" opacity="0.4"/>
+      <circle cx="45" cy="8" r="0.5" fill="white" opacity="0.3"/>
+      <circle cx="90" cy="35" r="0.7" fill="white" opacity="0.5"/>
+      <circle cx="130" cy="12" r="0.5" fill="white" opacity="0.35"/>
+      <circle cx="170" cy="28" r="0.6" fill="white" opacity="0.4"/>
+      <circle cx="60" cy="55" r="0.5" fill="white" opacity="0.3"/>
+      <circle cx="150" cy="60" r="0.4" fill="white" opacity="0.25"/>
+      <circle cx="20" cy="80" r="0.6" fill="white" opacity="0.35"/>
+      <circle cx="110" cy="75" r="0.5" fill="white" opacity="0.3"/>
+      <circle cx="190" cy="90" r="0.7" fill="white" opacity="0.45"/>
+      <circle cx="35" cy="110" r="0.4" fill="white" opacity="0.2"/>
+      <circle cx="80" cy="130" r="0.5" fill="white" opacity="0.3"/>
+      <circle cx="160" cy="120" r="0.6" fill="white" opacity="0.4"/>
+      <circle cx="5" cy="150" r="0.5" fill="white" opacity="0.3"/>
+      <circle cx="120" cy="160" r="0.4" fill="white" opacity="0.25"/>
+      <circle cx="195" cy="145" r="0.6" fill="white" opacity="0.35"/>
+      <circle cx="70" cy="175" r="0.5" fill="white" opacity="0.3"/>
+      <circle cx="140" cy="185" r="0.6" fill="white" opacity="0.4"/>
+    </pattern>
+
+    <!-- Hex pattern for dome surface -->
+    <pattern id="hex1" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+      <polygon points="30,2 55,16 55,36 30,50 5,36 5,16"
+        fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.5"/>
+    </pattern>
+
+    <!-- Clip paths for domes -->
+    <clipPath id="clip-dome1">
+      <ellipse cx="420" cy="450" rx="310" ry="310"/>
+    </clipPath>
+    <clipPath id="clip-dome2">
+      <ellipse cx="720" cy="450" rx="230" ry="230"/>
+    </clipPath>
+    <clipPath id="clip-dome3">
+      <ellipse cx="960" cy="450" rx="165" ry="165"/>
+    </clipPath>
+
+    <!-- Scan line overlay -->
+    <pattern id="scanlines" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="rgba(0,0,0,0.04)"/>
+    </pattern>
+  </defs>
+
+  <!-- ── SKY ── -->
+  <rect width="100%" style="display:block;max-width:100%;" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" fill="url(#sky)"/>
+  <rect width="1200" height="340" fill="url(#stars)" opacity="0.7"/>
+
+  <!-- Horizon ambient glow -->
+  <ellipse cx="600" cy="450" rx="700" ry="120" fill="url(#horizGlow)"/>
+
+  <!-- ── GROUND ── -->
+  <rect x="0" y="440" width="1200" height="160" fill="url(#ground)"/>
+  <!-- Ground texture lines -->
+  <line x1="0" y1="440" x2="1200" y2="440" stroke="#00E5A0" stroke-width="0.5" opacity="0.15"/>
+  <!-- Perspective grid -->
+  <line x1="600" y1="440" x2="0" y2="600" stroke="#00E5A0" stroke-width="0.3" opacity="0.08"/>
+  <line x1="600" y1="440" x2="200" y2="600" stroke="#00E5A0" stroke-width="0.3" opacity="0.08"/>
+  <line x1="600" y1="440" x2="400" y2="600" stroke="#00E5A0" stroke-width="0.3" opacity="0.06"/>
+  <line x1="600" y1="440" x2="800" y2="600" stroke="#00E5A0" stroke-width="0.3" opacity="0.06"/>
+  <line x1="600" y1="440" x2="1000" y2="600" stroke="#00E5A0" stroke-width="0.3" opacity="0.08"/>
+  <line x1="600" y1="440" x2="1200" y2="600" stroke="#00E5A0" stroke-width="0.3" opacity="0.08"/>
+
+  <!-- ════════════════════════════════
+       BUILDINGS / INFRASTRUCTURE
+  ════════════════════════════════ -->
+
+  <!-- Left industrial tower (cooling tower shape) -->
+  <!-- Tower 1 large -->
+  <path d="M 300,440 Q 290,300 310,200 Q 330,120 360,120 Q 390,120 410,200 Q 430,300 420,440 Z"
+    fill="#0E1A18" stroke="#1A2820" stroke-width="1"/>
+  <!-- Tower highlight -->
+  <path d="M 310,440 Q 302,300 320,200 Q 338,130 360,128"
+    fill="none" stroke="#1E3028" stroke-width="1.5" opacity="0.6"/>
+  <!-- Steam from top -->
+  <ellipse cx="360" cy="115" rx="28" ry="8" fill="#1A2820" stroke="#2A3A30" stroke-width="0.8" opacity="0.8"/>
+  <path d="M 345,115 Q 340,90 350,70 Q 355,55 348,40" fill="none" stroke="#1E3028" stroke-width="8" stroke-linecap="round" opacity="0.4"/>
+  <path d="M 365,115 Q 370,85 362,65 Q 358,50 368,35" fill="none" stroke="#1E3028" stroke-width="6" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Tower 2 smaller left -->
+  <path d="M 240,440 Q 232,330 248,250 Q 262,185 282,185 Q 302,185 316,250 Q 330,330 322,440 Z"
+    fill="#0C1614" stroke="#182420" stroke-width="1"/>
+  <ellipse cx="282" cy="182" rx="20" ry="6" fill="#162018" stroke="#223028" stroke-width="0.8" opacity="0.8"/>
+
+  <!-- Warm glow under left towers -->
+  <ellipse cx="360" cy="440" rx="200" ry="30" fill="url(#warmGlow)"/>
+
+  <!-- Ground lights left cluster -->
+  <circle cx="280" cy="440" r="3" fill="#FFB800" opacity="0.8" filter="url(#glow-sm)"/>
+  <circle cx="320" cy="440" r="2.5" fill="#FFB800" opacity="0.7" filter="url(#glow-sm)"/>
+  <circle cx="380" cy="440" r="3" fill="#FFB800" opacity="0.8" filter="url(#glow-sm)"/>
+  <circle cx="420" cy="440" r="2" fill="#FFB800" opacity="0.6" filter="url(#glow-sm)"/>
+  <circle cx="260" cy="438" r="1.8" fill="#FFB800" opacity="0.5"/>
+  <circle cx="440" cy="438" r="1.8" fill="#FFB800" opacity="0.5"/>
+
+  <!-- Center buildings -->
+  <!-- Main facility block -->
+  <rect x="560" y="360" width="120" height="80" fill="#0C1614" stroke="#182420" stroke-width="1"/>
+  <rect x="580" y="340" width="80" height="100" fill="#0E1A18" stroke="#1A2820" stroke-width="1"/>
+  <!-- Windows lit -->
+  <rect x="588" y="350" width="12" height="8" rx="1" fill="#FFB800" opacity="0.6" filter="url(#glow-xs)"/>
+  <rect x="606" y="350" width="12" height="8" rx="1" fill="#FFB800" opacity="0.5" filter="url(#glow-xs)"/>
+  <rect x="624" y="350" width="12" height="8" rx="1" fill="#FFB800" opacity="0.4"/>
+  <rect x="588" y="365" width="12" height="8" rx="1" fill="#FFB800" opacity="0.3"/>
+  <rect x="606" y="365" width="12" height="8" rx="1" fill="#FFB800" opacity="0.5" filter="url(#glow-xs)"/>
+
+  <!-- Chimney/stack center -->
+  <rect x="700" y="250" width="14" height="190" rx="2" fill="#0C1614" stroke="#182420" stroke-width="1"/>
+  <!-- Red warning light on chimney -->
+  <circle cx="707" cy="248" r="4" fill="#FF4444" opacity="0.9" filter="url(#glow-sm)"/>
+
+  <!-- Right side structures -->
+  <rect x="880" y="380" width="100" height="60" fill="#0C1614" stroke="#182420" stroke-width="1"/>
+  <rect x="900" y="355" width="60" height="85" fill="#0E1A18" stroke="#1A2820" stroke-width="1"/>
+  <!-- Right facility windows -->
+  <rect x="906" y="365" width="10" height="7" rx="1" fill="#FFB800" opacity="0.5" filter="url(#glow-xs)"/>
+  <rect x="920" y="365" width="10" height="7" rx="1" fill="#FFB800" opacity="0.4"/>
+  <rect x="934" y="365" width="10" height="7" rx="1" fill="#FFB800" opacity="0.6" filter="url(#glow-xs)"/>
+  <!-- Ground lights right -->
+  <circle cx="890" cy="440" r="2.5" fill="#FFB800" opacity="0.7" filter="url(#glow-sm)"/>
+  <circle cx="930" cy="440" r="2" fill="#FFB800" opacity="0.6"/>
+  <circle cx="970" cy="440" r="2.5" fill="#FFB800" opacity="0.7" filter="url(#glow-sm)"/>
+
+  <!-- Far background buildings (silhouette) -->
+  <rect x="80" y="400" width="40" height="40" fill="#080E10"/>
+  <rect x="90" y="385" width="20" height="55" fill="#090F12"/>
+  <rect x="140" y="410" width="30" height="30" fill="#080E10"/>
+  <rect x="1050" y="405" width="35" height="35" fill="#080E10"/>
+  <rect x="1100" y="395" width="25" height="45" fill="#090F12"/>
+  <rect x="1140" y="415" width="40" height="25" fill="#080E10"/>
+
+  <!-- ════════════════════════════════
+       PROTECTION DOMES
+  ════════════════════════════════ -->
+
+  <!-- ── DOME 1 (large, left) cx=420 cy=450 rx=310 ── -->
+  <!-- Fill surface -->
+  <ellipse cx="420" cy="450" rx="310" ry="310" fill="url(#dome1fill)" clip-path="url(#clip-dome1)"/>
+  <!-- Hex grid on dome surface -->
+  <rect x="110" y="140" width="620" height="310" fill="url(#hex1)" clip-path="url(#clip-dome1)" opacity="0.6"/>
+  <!-- Outer rim stroke -->
+  <path d="M 110,450 A 310,310 0 0,1 730,450"
+    fill="none" stroke="#00E5A0" stroke-width="1.5" opacity="0.6" filter="url(#glow-xs)"/>
+  <!-- Inner glow ring -->
+  <path d="M 130,450 A 290,290 0 0,1 710,450"
+    fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.25"/>
+  <!-- Dome meridians -->
+  <path d="M 420,140 A 310,310 0 0,1 730,450" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.3"/>
+  <path d="M 420,140 A 310,310 0 0,0 110,450" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.3"/>
+  <path d="M 420,140 Q 560,240 620,450" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.2"/>
+  <path d="M 420,140 Q 280,240 220,450" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.2"/>
+  <path d="M 420,140 Q 480,300 530,450" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.15"/>
+  <path d="M 420,140 Q 360,300 310,450" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.15"/>
+  <!-- Latitude rings -->
+  <path d="M 160,340 Q 420,290 680,340" fill="none" stroke="#00E5A0" stroke-width="0.7" opacity="0.3"/>
+  <path d="M 130,395 Q 420,355 710,395" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.25"/>
+  <path d="M 200,275 Q 420,235 640,275" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.2"/>
+  <!-- Dome apex glow -->
+  <circle cx="420" cy="140" r="8" fill="#00E5A0" opacity="0.5" filter="url(#glow-md)"/>
+  <circle cx="420" cy="140" r="3" fill="#00E5A0" opacity="0.9"/>
+  <!-- Ground contact glow -->
+  <ellipse cx="420" cy="450" rx="310" ry="12" fill="none" stroke="#00E5A0" stroke-width="1.5" opacity="0.4" filter="url(#glow-xs)"/>
+
+  <!-- ── DOME 2 (center) cx=720 cy=450 rx=230 ── -->
+  <ellipse cx="720" cy="450" rx="230" ry="230" fill="url(#dome2fill)" clip-path="url(#clip-dome2)"/>
+  <rect x="490" y="220" width="460" height="230" fill="url(#hex1)" clip-path="url(#clip-dome2)" opacity="0.55"/>
+  <path d="M 490,450 A 230,230 0 0,1 950,450"
+    fill="none" stroke="#00E5A0" stroke-width="1.3" opacity="0.55" filter="url(#glow-xs)"/>
+  <path d="M 510,450 A 210,210 0 0,1 930,450"
+    fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.2"/>
+  <!-- Meridians -->
+  <path d="M 720,220 A 230,230 0 0,1 950,450" fill="none" stroke="#00E5A0" stroke-width="0.7" opacity="0.28"/>
+  <path d="M 720,220 A 230,230 0 0,0 490,450" fill="none" stroke="#00E5A0" stroke-width="0.7" opacity="0.28"/>
+  <path d="M 720,220 Q 820,310 860,450" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.18"/>
+  <path d="M 720,220 Q 620,310 580,450" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.18"/>
+  <!-- Latitude -->
+  <path d="M 520,360 Q 720,325 920,360" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.25"/>
+  <path d="M 500,405 Q 720,378 940,405" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.2"/>
+  <!-- Apex -->
+  <circle cx="720" cy="220" r="6" fill="#00E5A0" opacity="0.45" filter="url(#glow-md)"/>
+  <circle cx="720" cy="220" r="2.5" fill="#00E5A0" opacity="0.85"/>
+  <ellipse cx="720" cy="450" rx="230" ry="10" fill="none" stroke="#00E5A0" stroke-width="1.3" opacity="0.35" filter="url(#glow-xs)"/>
+
+  <!-- ── DOME 3 (small right) cx=960 cy=450 rx=165 ── -->
+  <ellipse cx="960" cy="450" rx="165" ry="165" fill="url(#dome3fill)" clip-path="url(#clip-dome3)"/>
+  <rect x="795" y="285" width="330" height="165" fill="url(#hex1)" clip-path="url(#clip-dome3)" opacity="0.5"/>
+  <path d="M 795,450 A 165,165 0 0,1 1125,450"
+    fill="none" stroke="#00E5A0" stroke-width="1.1" opacity="0.5" filter="url(#glow-xs)"/>
+  <!-- Meridians -->
+  <path d="M 960,285 A 165,165 0 0,1 1125,450" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.25"/>
+  <path d="M 960,285 A 165,165 0 0,0 795,450" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.25"/>
+  <path d="M 960,285 Q 1040,350 1060,450" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.15"/>
+  <path d="M 960,285 Q 880,350 860,450" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.15"/>
+  <!-- Latitude -->
+  <path d="M 820,385 Q 960,360 1100,385" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.22"/>
+  <!-- Apex -->
+  <circle cx="960" cy="285" r="5" fill="#00E5A0" opacity="0.4" filter="url(#glow-md)"/>
+  <circle cx="960" cy="285" r="2" fill="#00E5A0" opacity="0.8"/>
+  <ellipse cx="960" cy="450" rx="165" ry="9" fill="none" stroke="#00E5A0" stroke-width="1.1" opacity="0.3" filter="url(#glow-xs)"/>
+
+  <!-- ════════════════════════════════
+       DRONE (top right, approaching)
+  ════════════════════════════════ -->
+  <g transform="translate(940, 95) rotate(-8)">
+    <!-- Drone body -->
+    <rect x="-18" y="-8" width="36" height="16" rx="4" fill="#0A0E0C" stroke="#1A2820" stroke-width="1.2"/>
+    <!-- Center sphere -->
+    <circle cx="0" cy="0" r="7" fill="#0C1410" stroke="#1E2820" stroke-width="1"/>
+    <circle cx="0" cy="0" r="4" fill="#101810" stroke="#2A3828" stroke-width="0.8"/>
+    <!-- Arms -->
+    <line x1="-18" y1="0" x2="-42" y2="-16" stroke="#0C1410" stroke-width="3" stroke-linecap="round"/>
+    <line x1="18" y1="0" x2="42" y2="-16" stroke="#0C1410" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-18" y1="0" x2="-42" y2="16" stroke="#0C1410" stroke-width="3" stroke-linecap="round"/>
+    <line x1="18" y1="0" x2="42" y2="16" stroke="#0C1410" stroke-width="3" stroke-linecap="round"/>
+    <!-- Rotors (blur ellipses) -->
+    <ellipse cx="-42" cy="-16" rx="16" ry="4" fill="none" stroke="#2A3828" stroke-width="1.5" opacity="0.7"/>
+    <ellipse cx="42" cy="-16" rx="16" ry="4" fill="none" stroke="#2A3828" stroke-width="1.5" opacity="0.7"/>
+    <ellipse cx="-42" cy="16" rx="16" ry="4" fill="none" stroke="#2A3828" stroke-width="1.5" opacity="0.7"/>
+    <ellipse cx="42" cy="16" rx="16" ry="4" fill="none" stroke="#2A3828" stroke-width="1.5" opacity="0.7"/>
+    <!-- Rotor hubs -->
+    <circle cx="-42" cy="-16" r="3" fill="#0C1410" stroke="#1E2820" stroke-width="1"/>
+    <circle cx="42" cy="-16" r="3" fill="#0C1410" stroke="#1E2820" stroke-width="1"/>
+    <circle cx="-42" cy="16" r="3" fill="#0C1410" stroke="#1E2820" stroke-width="1"/>
+    <circle cx="42" cy="16" r="3" fill="#0C1410" stroke="#1E2820" stroke-width="1"/>
+    <!-- Camera gimbal -->
+    <rect x="-5" y="7" width="10" height="8" rx="2" fill="#0A0E0C" stroke="#1A2820" stroke-width="0.8"/>
+    <circle cx="0" cy="12" r="3" fill="#060A08" stroke="#1A2820" stroke-width="0.8"/>
+    <circle cx="0" cy="12" r="1.5" fill="#00E5A0" opacity="0.4"/>
+  </g>
+
+  <!-- Drone threat indicator -->
+  <!-- Dashed target circle around drone -->
+  <circle cx="940" cy="95" r="65" fill="none" stroke="#FF4444" stroke-width="1" stroke-dasharray="6 4" opacity="0.5"/>
+  <circle cx="940" cy="95" r="80" fill="none" stroke="#FF4444" stroke-width="0.6" stroke-dasharray="3 6" opacity="0.25"/>
+  <!-- Cross-hair lines -->
+  <line x1="940" y1="20" x2="940" y2="50" stroke="#FF4444" stroke-width="0.8" opacity="0.5"/>
+  <line x1="940" y1="140" x2="940" y2="170" stroke="#FF4444" stroke-width="0.8" opacity="0.5"/>
+  <line x1="865" y1="95" x2="895" y2="95" stroke="#FF4444" stroke-width="0.8" opacity="0.5"/>
+  <line x1="985" y1="95" x2="1015" y2="95" stroke="#FF4444" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- DRONE DETECTION BEAM — from dome2 apex to drone -->
+  <line x1="720" y1="220" x2="940" y2="95"
+    stroke="#00E5A0" stroke-width="1" stroke-dasharray="8 5" opacity="0.5"/>
+  <!-- Beam pulse -->
+  <circle cx="830" cy="157" r="4" fill="#00E5A0" opacity="0.6" filter="url(#glow-sm)"/>
+
+  <!-- ALERT TAG next to drone -->
+  <rect x="1000" y="72" width="110" height="24" rx="3"
+    fill="#0D1318" stroke="#FF4444" stroke-width="1" opacity="0.9"/>
+  <text x="1055" y="88"
+    font-family="'Courier New', monospace" font-size="10"
+    fill="#FF4444" text-anchor="middle" letter-spacing="1.5" opacity="0.9">⚠ DRONE DETECTED</text>
+
+  <!-- ════════════════════════════════
+       HUD OVERLAYS
+  ════════════════════════════════ -->
+
+  <!-- Top-left status panel -->
+  <rect x="20" y="20" width="200" height="90" rx="4"
+    fill="#0D1318" fill-opacity="0.85" stroke="#1E2D3D" stroke-width="1"/>
+  <text x="32" y="40" font-family="'Courier New',monospace" font-size="9" fill="#00E5A0" letter-spacing="2" opacity="0.8">// VARTA SYSTEMS</text>
+  <line x1="28" y1="46" x2="212" y2="46" stroke="#1E2D3D" stroke-width="0.8"/>
+  <text x="32" y="60" font-family="'Courier New',monospace" font-size="9" fill="#00E5A0" opacity="0.7">● SHIELD STATUS: <tspan fill="#00E5A0">ACTIVE</tspan></text>
+  <text x="32" y="73" font-family="'Courier New',monospace" font-size="9" fill="#5A7A8A" opacity="0.8">DOMES ONLINE: <tspan fill="#EDF4F8">3/3</tspan></text>
+  <text x="32" y="86" font-family="'Courier New',monospace" font-size="9" fill="#5A7A8A" opacity="0.8">THREATS: <tspan fill="#FF4444">1 DETECTED</tspan></text>
+  <text x="32" y="99" font-family="'Courier New',monospace" font-size="9" fill="#5A7A8A" opacity="0.8">COVERAGE: <tspan fill="#EDF4F8">2.4 km²</tspan></text>
+
+  <!-- Top-right dome info -->
+  <rect x="980" y="20" width="200" height="74" rx="4"
+    fill="#0D1318" fill-opacity="0.85" stroke="#1E2D3D" stroke-width="1"/>
+  <text x="992" y="38" font-family="'Courier New',monospace" font-size="9" fill="#00E5A0" letter-spacing="2" opacity="0.8">// RF DETECTION</text>
+  <line x1="988" y1="44" x2="1172" y2="44" stroke="#1E2D3D" stroke-width="0.8"/>
+  <text x="992" y="57" font-family="'Courier New',monospace" font-size="9" fill="#5A7A8A">1.2 GHz  <tspan fill="#00E5A0">████████░░</tspan></text>
+  <text x="992" y="70" font-family="'Courier New',monospace" font-size="9" fill="#5A7A8A">2.4 GHz  <tspan fill="#00E5A0">██████████</tspan></text>
+  <text x="992" y="83" font-family="'Courier New',monospace" font-size="9" fill="#5A7A8A">5.8 GHz  <tspan fill="#FF4444">████████░░</tspan></text>
+
+  <!-- Bottom dome labels -->
+  <!-- Dome 1 label -->
+  <rect x="355" y="458" width="130" height="22" rx="3"
+    fill="#0D1318" fill-opacity="0.9" stroke="#00E5A0" stroke-width="0.8" opacity="0.8"/>
+  <text x="420" y="473" font-family="'Courier New',monospace" font-size="9"
+    fill="#00E5A0" text-anchor="middle" letter-spacing="1.5">SHIELD-1 · R=310m</text>
+
+  <!-- Dome 2 label -->
+  <rect x="658" y="458" width="124" height="22" rx="3"
+    fill="#0D1318" fill-opacity="0.9" stroke="#00E5A0" stroke-width="0.8" opacity="0.8"/>
+  <text x="720" y="473" font-family="'Courier New',monospace" font-size="9"
+    fill="#00E5A0" text-anchor="middle" letter-spacing="1.5">SHIELD-2 · R=230m</text>
+
+  <!-- Dome 3 label -->
+  <rect x="900" y="458" width="120" height="22" rx="3"
+    fill="#0D1318" fill-opacity="0.9" stroke="#00E5A0" stroke-width="0.8" opacity="0.8"/>
+  <text x="960" y="473" font-family="'Courier New',monospace" font-size="9"
+    fill="#00E5A0" text-anchor="middle" letter-spacing="1.5">SHIELD-3 · R=165m</text>
+
+  <!-- Scanlines overlay -->
+  <rect width="100%" style="display:block;max-width:100%;" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" fill="url(#scanlines)" opacity="0.5"/>
+
+  <!-- Vignette -->
+  <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="#000" stop-opacity="0.5"/>
+  </radialGradient>
+  <rect width="100%" style="display:block;max-width:100%;" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" fill="url(#vignette)"/>
+
+</svg>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section class="section features-bg">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-eyebrow" id="eyebrow-about">// ПРО КОМПАНІЮ</div>
+        <h2 class="section-title" style="margin: 8px 0 24px;" id="title-about">VARTA SYSTEMS</h2>
+        <p id="about-p1">Українська компанія-виробник засобів радіоелектронної розвідки та антенних систем для потреб ЗСУ. Спеціалізуємось на детекторах БПЛА та аксесуарах для систем РЕБ.</p>
+        <div class="about-highlight" id="about-quote">
+          «Перш ніж нейтралізувати загрозу — її треба виявити.»
+        </div>
+        <p id="about-p2">Розуміємо реальні потреби на передовій, тому кожен наш продукт проектується з урахуванням польових умов: надійність, простота використання, стійкість до перешкод.</p>
+      </div>
+      <div class="about-visual">
+        <div class="terminal-bar">
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-green">$</span> <span class="t-white">varta --status</span></div>
+          <div class="t-dim">———————————————————</div>
+          <div><span class="t-green">✓</span> <span class="t-white">Виробництво:</span> <span class="t-green">ACTIVE</span></div>
+          <div><span class="t-green">✓</span> <span class="t-white">Поставки:</span> <span class="t-green">OPERATIONAL</span></div>
+          <div><span class="t-green">✓</span> <span class="t-white">Підтримка:</span> <span class="t-green">24/7 ONLINE</span></div>
+          <div><span class="t-warn">!</span> <span class="t-white">Пріоритет:</span> <span class="t-warn">БОЙОВІ ЧАСТИНИ</span></div>
+          <div class="t-dim">———————————————————</div>
+          <div><span class="t-green">$</span> <span class="t-white">varta --location</span></div>
+          <div><span class="t-green">→</span> Україна / Classified</div>
+          <div class="t-dim">———————————————————</div>
+          <div><span class="t-green">$</span> <span class="t-dim">█</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-bg" id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow" id="eyebrow-con">// ЗВ'ЯЗОК</div>
+        <h2 class="section-title" id="title-con">Зробити запит</h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3 id="con-h3">Готові до поставки</h3>
+        <p id="con-p">Залиште заявку — наш менеджер зв'яжеться протягом 2 годин. Для термінових запитів — Telegram.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <div>
+              <div style="font-size:11px;color:var(--text-dim);margin-bottom:2px;" id="ci1-l">Email</div>
+              <div>info@vartasystems.ua</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📱</div>
+            <div>
+              <div style="font-size:11px;color:var(--text-dim);margin-bottom:2px;" id="ci2-l">Telegram</div>
+              <div>@vartasystems</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <div style="font-size:11px;color:var(--text-dim);margin-bottom:2px;" id="ci3-l">Адреса</div>
+              <div id="ci3-v">Україна (локація захищена)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" id="fl-name">Ім'я / Підрозділ</label>
+            <input class="form-input" type="text" id="fi-name" placeholder="Позивний або назва">
+          </div>
+          <div class="form-group">
+            <label class="form-label" id="fl-phone">Контакт</label>
+            <input class="form-input" type="text" id="fi-phone" placeholder="+380 або Telegram">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" id="fl-cat">Категорія</label>
+          <select class="form-select" id="fi-cat">
+            <option id="fopt0">Оберіть категорію</option>
+            <option id="fopt1">Детектори дронів</option>
+            <option id="fopt2">Антени для РЕБ</option>
+            <option id="fopt3">Антени для зв'язку</option>
+            <option id="fopt4">Аксесуари</option>
+            <option id="fopt5">Кілька позицій</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" id="fl-msg">Запит / кількість</label>
+          <textarea class="form-textarea" id="fi-msg" placeholder="Опишіть потребу, кількість, терміни..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()" id="btn-submit">Надіслати запит →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" style="text-decoration:none;display:inline-block;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" height="38">
+            <defs>
+              <filter id="fglow"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <polygon points="26,3 46,14 46,36 26,47 6,36 6,14" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.2"/>
+            <polygon points="26,8 42,17 42,33 26,42 10,33 10,17" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.45"/>
+            <path d="M26 12 L40 20 L40 31 Q40 39 26 44 Q12 39 12 31 L12 20 Z" fill="#080C10" stroke="#00E5A0" stroke-width="0.7" opacity="0.8"/>
+            <circle cx="26" cy="28" r="4" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.5"/>
+            <circle cx="26" cy="28" r="7" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.28"/>
+            <line x1="26" y1="18" x2="26" y2="38" stroke="#00E5A0" stroke-width="0.5" opacity="0.4"/>
+            <line x1="16" y1="28" x2="36" y2="28" stroke="#00E5A0" stroke-width="0.5" opacity="0.4"/>
+            <circle cx="26" cy="28" r="1.8" fill="#00E5A0" filter="url(#fglow)"/>
+            <circle cx="32" cy="22" r="1.2" fill="#00E5A0" opacity="0.9" filter="url(#fglow)"/>
+            <circle cx="21" cy="34" r="0.9" fill="#00E5A0" opacity="0.5"/>
+            <line x1="6" y1="14" x2="11" y2="11" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+            <line x1="46" y1="14" x2="41" y2="11" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+            <line x1="6" y1="36" x2="11" y2="39" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+            <line x1="46" y1="36" x2="41" y2="39" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+            <line x1="55" y1="10" x2="55" y2="46" stroke="#1E2D3D" stroke-width="0.8"/>
+            <text x="62" y="30" font-family="Arial Narrow,Arial,sans-serif" font-size="20" font-weight="900" fill="#EDF4F8" letter-spacing="2">VARTA</text>
+            <text x="63" y="42" font-family="Arial Narrow,Arial,sans-serif" font-size="10" font-weight="700" fill="#00E5A0" letter-spacing="4.5">SYSTEMS</text>
+          </svg>
+        </a>
+        <p id="footer-desc" style="margin-top:12px;">Засоби радіоелектронної розвідки та антенні системи для Збройних Сил України.</p>
+        <p style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#3A5060;letter-spacing:1.5px;">ЗАХИСТ ПОЧИНАЄТЬСЯ З ВИЯВЛЕННЯ</p>
+      </div>
+      <div class="footer-col">
+        <h4 id="fc1-t">ПРОДУКЦІЯ</h4>
+        <ul>
+          <li><a href="#catalog" id="fc1-1">Детектори дронів</a></li>
+          <li><a href="#catalog" id="fc1-2">Антени для РЕБ</a></li>
+          <li><a href="#catalog" id="fc1-3">Антени для зв'язку</a></li>
+          <li><a href="#catalog" id="fc1-4">Аксесуари</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 id="fc2-t">КОМПАНІЯ</h4>
+        <ul>
+          <li><a href="#about" id="fc2-1">Про нас</a></li>
+          <li><a href="#how" id="fc2-2">Як ми працюємо</a></li>
+          <li><a href="#contact" id="fc2-3">Контакти</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 id="fc3-t">КОНТАКТИ</h4>
+        <ul>
+          <li><a href="mailto:info@vartasystems.ua">info@vartasystems.ua</a></li>
+          <li><a href="#">Telegram: @vartasystems</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" id="footer-copy">© 2025 VARTA SYSTEMS. Всі права захищені.</div>
+      <div class="footer-legal">
+        <a href="#" id="fl-priv">Політика конфіденційності</a>
+        <a href="#" id="fl-terms">Умови використання</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">—</div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-img" id="modalImg">🔲</div>
+      <p id="modalDesc" style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:16px;">—</p>
+      <div class="modal-specs" id="modalSpecs"></div>
+    </div>
+    <div class="modal-footer">
+      <div>
+        <div class="product-price-label" id="modalPriceLabel">Ціна</div>
+        <div class="product-price" id="modalPrice">—</div>
+      </div>
+      <a href="#contact" class="btn-primary" onclick="closeModalDirect()" id="modalCta">Зробити запит →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const T = {
+  ua: {
+    nav: ['Каталог','Про нас','Як це працює','Контакти'],
+    cta_header: "Зв'язатись",
+    hero_badge: '● АКТИВНА СИСТЕМА ВИЯВЛЕННЯ',
+    hero_h1: ['Захист','починається<br>з виявлення'],
+    hero_sub: 'Детектори дронів, антени та системи радіоелектронної розвідки для Збройних Сил України. Виробництво в Україні.',
+    hero_cta1: 'Переглянути каталог →',
+    hero_cta2: 'Запит на поставку',
+    radar_label: '// DRONE DETECTION ACTIVE',
+    stats: ['Замовлень поставлено','Категорії продукції','Виробництво в Україні','Технічна підтримка'],
+    eyebrow_cat: '// КАТАЛОГ ПРОДУКЦІЇ',
+    link_request: 'Зробити запит →',
+    tabs: ['Всі товари','Детектори дронів','Антени','Аксесуари'],
+    eyebrow_feat: '// ЧОМУ VARTA SYSTEMS',
+    title_feat: 'Наші переваги',
+    feats: [
+      ['Перевірено в бою','Наша продукція пройшла реальні польові випробування та використовується підрозділами ЗСУ на передовій.'],
+      ['Виробництво в Україні','Повний цикл виробництва на українських потужностях. Кожна одиниця проходить контроль якості.'],
+      ['Швидка поставка','Оперативне відвантаження по всій Україні. Пріоритетна логістика для бойових частин.'],
+      ['Технічна підтримка','Команда інженерів на зв\'язку 24/7. Надаємо інструкції, навчання та сервісне обслуговування.'],
+      ['Офіційні документи','Повний пакет документів для держзакупівель. Підтримуємо НАТО-кодифікацію на окремі позиції.'],
+      ['Постійний R&D','Безперервна розробка нових рішень відповідно до змін тактичної обстановки та нових загроз.'],
+    ],
+    eyebrow_how: '// ПРОЦЕС РОБОТИ',
+    title_how: 'Від запиту до поставки',
+    steps: [
+      ['Запит','Зв\'яжіться з нами через форму або Telegram. Опишіть потребу та кількість.'],
+      ['Технічна консультація','Наш спеціаліст підбере оптимальне рішення під ваше завдання.'],
+      ['Оформлення','Договір, рахунок, пакет документів для держзакупівлі або прямої закупівлі.'],
+      ['Поставка','Відвантаження в узгоджені терміни. Інструктаж та технічна підтримка після поставки.'],
+    ],
+    eyebrow_about: '// ПРО КОМПАНІЮ',
+    title_about: 'VARTA SYSTEMS',
+    eyebrow_scene: '// ЗАСТОСУВАННЯ',
+    title_scene: 'Захист критичної<br>інфраструктури',
+    scene_desc: 'Системи VARTA SYSTEMS забезпечують виявлення БПЛА-загроз у реальному часі навколо промислових об\'єктів, військових позицій та стратегічної інфраструктури.',
+    scene_stats: ['Покриття','Зона захисту','Час виявлення'],
+    eyebrow_intercept: '// ПЕРЕХОПЛЕННЯ',
+    title_intercept: 'Дрон проти дрону',
+    desc_intercept: 'Перехоплювач виявляє БПЛА-загрозу, захоплює ціль і нейтралізує її до того, як вона досягне об\'єкта.',
+    eyebrow_intercept: '// ПЕРЕХОПЛЕННЯ',
+    title_intercept: 'Дрон проти<br><em style="color:var(--accent);font-style:normal;">дрона</em>',
+    desc_intercept: 'Система автоматично виявляє ворожий БПЛА та відправляє дрон-перехватчик для нейтралізації загрози без участі оператора.',
+    btn_intercept: '↺ ПОВТОРИТИ',
+    about_p1: 'Українська компанія-виробник засобів радіоелектронної розвідки та антенних систем для потреб ЗСУ. Спеціалізуємось на детекторах БПЛА та аксесуарах для систем РЕБ.',
+    about_quote: '«Перш ніж нейтралізувати загрозу — її треба виявити.»',
+    about_p2: 'Розуміємо реальні потреби на передовій, тому кожен наш продукт проектується з урахуванням польових умов: надійність, простота використання, стійкість до перешкод.',
+    eyebrow_con: '// ЗВ\'ЯЗОК',
+    title_con: 'Зробити запит',
+    con_h3: 'Готові до поставки',
+    con_p: 'Залиште заявку — наш менеджер зв\'яжеться протягом 2 годин. Для термінових запитів — Telegram.',
+    ci_labels: ['Email','Telegram','Адреса'],
+    ci3_v: 'Україна (локація захищена)',
+    form_labels: ['Ім\'я / Підрозділ','Контакт','Категорія','Запит / кількість'],
+    form_placeholders: ['Позивний або назва','+380 або Telegram','Опишіть потребу, кількість, терміни...'],
+    cat_options: ['Оберіть категорію','Детектори дронів','Антени для РЕБ','Антени для зв\'язку','Аксесуари','Кілька позицій'],
+    btn_submit: 'Надіслати запит →',
+    footer_desc: 'Засоби радіоелектронної розвідки та антенні системи для Збройних Сил України.',
+    fc_titles: ['ПРОДУКЦІЯ','КОМПАНІЯ','КОНТАКТИ'],
+    fc1: ['Детектори дронів','Антени для РЕБ','Антени для зв\'язку','Аксесуари'],
+    fc2: ['Про нас','Як ми працюємо','Контакти'],
+    footer_copy: '© 2025 VARTA SYSTEMS. Всі права захищені.',
+    fl: ['Політика конфіденційності','Умови використання'],
+    modal_price_label: 'Ціна (без ПДВ)',
+    modal_cta: 'Зробити запит →',
+    more: 'Детальніше',
+    request: 'Запит',
+  },
+  en: {
+    nav: ['Catalog','About','How it works','Contact'],
+    cta_header: 'Contact us',
+    hero_badge: '● ACTIVE DETECTION SYSTEM',
+    hero_h1: ['Protection','starts with<br>detection'],
+    hero_sub: 'Drone detectors, antennas and radio intelligence systems for the Armed Forces of Ukraine. Made in Ukraine.',
+    hero_cta1: 'View catalog →',
+    hero_cta2: 'Request supply',
+    radar_label: '// DRONE DETECTION ACTIVE',
+    stats: ['Orders delivered','Product categories','Made in Ukraine','Technical support'],
+    eyebrow_cat: '// PRODUCT CATALOG',
+    title_cat: 'Our Products',
+    link_request: 'Make a request →',
+    tabs: ['All products','Drone detectors','Antennas','Accessories'],
+    eyebrow_feat: '// WHY VARTA SYSTEMS',
+    title_feat: 'Our advantages',
+    feats: [
+      ['Combat-proven','Our products have passed real field tests and are used by AFU units on the frontline.'],
+      ['Made in Ukraine','Full production cycle at Ukrainian facilities. Each unit passes quality control before shipment.'],
+      ['Fast delivery','Rapid shipping across Ukraine. Priority logistics for combat units.'],
+      ['Technical support','Engineering team available 24/7. We provide manuals, training and service support.'],
+      ['Official documentation','Full document package for government procurement. NATO codification available on select items.'],
+      ['Continuous R&D','Ongoing development of new solutions in response to changing tactical situations and emerging threats.'],
+    ],
+    eyebrow_how: '// HOW IT WORKS',
+    title_how: 'From request to delivery',
+    steps: [
+      ['Request','Contact us via the form or Telegram. Describe your need and quantity.'],
+      ['Technical consultation','Our specialist will select the optimal solution for your task.'],
+      ['Processing','Contract, invoice, document package for government or direct procurement.'],
+      ['Delivery','Shipment within agreed timelines. Briefing and technical support after delivery.'],
+    ],
+    eyebrow_about: '// ABOUT US',
+    title_about: 'VARTA SYSTEMS',
+    eyebrow_scene: '// APPLICATION',
+    title_scene: 'Protecting Critical<br>Infrastructure',
+    scene_desc: 'VARTA SYSTEMS detects UAV threats in real time around industrial facilities, military positions and strategic infrastructure.',
+    scene_stats: ['Coverage','Protection zone','Detection time'],
+    eyebrow_intercept: '// INTERCEPTION',
+    title_intercept: 'Drone vs Drone',
+    desc_intercept: 'The interceptor detects the UAV threat, locks on and neutralizes it before it reaches the target.',
+    eyebrow_intercept: '// INTERCEPTION',
+    title_intercept: 'Drone vs<br><em style="color:var(--accent);font-style:normal;">Drone</em>',
+    desc_intercept: 'The system automatically detects enemy UAVs and launches an interceptor drone to neutralize the threat without operator input.',
+    btn_intercept: '↺ REPLAY',
+    about_p1: 'Ukrainian manufacturer of radio intelligence equipment and antenna systems for the AFU. Specializing in UAV detectors and accessories for EW systems.',
+    about_quote: '"Before neutralizing a threat — it must be detected."',
+    about_p2: 'We understand real frontline needs, so every product is designed with field conditions in mind: reliability, ease of use, and resistance to interference.',
+    eyebrow_con: '// CONTACT',
+    title_con: 'Make a request',
+    con_h3: 'Ready to supply',
+    con_p: 'Submit a request — our manager will respond within 2 hours. For urgent requests — use Telegram.',
+    ci_labels: ['Email','Telegram','Location'],
+    ci3_v: 'Ukraine (location classified)',
+    form_labels: ['Name / Unit','Contact','Category','Request / quantity'],
+    form_placeholders: ['Call sign or unit name','+380 or Telegram','Describe your need, quantity, timeline...'],
+    cat_options: ['Select category','Drone detectors','EW antennas','Communication antennas','Accessories','Multiple items'],
+    btn_submit: 'Send request →',
+    footer_desc: 'Radio intelligence systems and antenna solutions for the Armed Forces of Ukraine.',
+    fc_titles: ['PRODUCTS','COMPANY','CONTACTS'],
+    fc1: ['Drone detectors','EW antennas','Comm antennas','Accessories'],
+    fc2: ['About us','How we work','Contact'],
+    footer_copy: '© 2025 VARTA SYSTEMS. All rights reserved.',
+    fl: ['Privacy Policy','Terms of Use'],
+    modal_price_label: 'Price (excl. VAT)',
+    modal_cta: 'Make a request →',
+    more: 'Details',
+    request: 'Request',
+  }
+};
+
+// ── SVG ILLUSTRATIONS ──────────────────────────────────────────────────────
+const SVG = {
+  // ── DRAGONFLY — flagship product ──
+  dragonfly: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="300" height="200">
+    <defs>
+      <filter id="dfg"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="dfs"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <linearGradient id="dfbody" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1A2420"/><stop offset="100%" stop-color="#080C0A"/>
+      </linearGradient>
+      <radialGradient id="dfscr" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#00E5A0" stop-opacity="0.13"/>
+        <stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <!-- Ground shadow -->
+    <ellipse cx="170" cy="196" rx="110" ry="7" fill="#000" opacity="0.5"/>
+    <!-- 3D left face -->
+    <polygon points="38,108 38,168 58,180 58,120" fill="#0E1612" stroke="#080C0A" stroke-width="0.5"/>
+    <!-- 3D bottom face -->
+    <polygon points="58,180 282,180 298,168 58,168" fill="#060908" stroke="#080C0A" stroke-width="0.5"/>
+    <!-- Main body -->
+    <rect x="58" y="100" width="240" height="80" rx="5" fill="url(#dfbody)" stroke="#1A2820" stroke-width="1.5"/>
+    <!-- Top connector strip -->
+    <rect x="58" y="93" width="240" height="10" rx="2" fill="#141E18" stroke="#1A2820" stroke-width="1"/>
+    <!-- Screen bezel -->
+    <rect x="70" y="108" width="170" height="58" rx="4" fill="#050807" stroke="#0E1612" stroke-width="2"/>
+    <!-- Screen -->
+    <rect x="74" y="112" width="162" height="50" rx="2" fill="#020504"/>
+    <rect x="74" y="112" width="162" height="50" rx="2" fill="url(#dfscr)"/>
+    <!-- Radar on screen -->
+    <circle cx="155" cy="137" r="8" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.55"/>
+    <circle cx="155" cy="137" r="15" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.32"/>
+    <circle cx="155" cy="137" r="22" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.16"/>
+    <line x1="80" y1="137" x2="230" y2="137" stroke="#00E5A0" stroke-width="0.5" opacity="0.2"/>
+    <line x1="155" y1="115" x2="155" y2="159" stroke="#00E5A0" stroke-width="0.5" opacity="0.2"/>
+    <line x1="155" y1="137" x2="174" y2="120" stroke="#00E5A0" stroke-width="1.2" opacity="0.7"/>
+    <circle cx="172" cy="122" r="2.8" fill="#00E5A0" filter="url(#dfg)" opacity="0.95"/>
+    <circle cx="143" cy="146" r="1.8" fill="#00E5A0" opacity="0.55" filter="url(#dfs)"/>
+    <circle cx="155" cy="137" r="2.2" fill="#00E5A0" filter="url(#dfg)"/>
+    <!-- Freq bars -->
+    <rect x="80" y="152" width="7" height="6" rx="1" fill="#00E5A0" opacity="0.8"/>
+    <rect x="90" y="149" width="7" height="9" rx="1" fill="#00E5A0" opacity="0.55"/>
+    <rect x="100" y="151" width="7" height="7" rx="1" fill="#00E5A0" opacity="0.85"/>
+    <rect x="110" y="148" width="7" height="10" rx="1" fill="#00E5A0" opacity="0.6"/>
+    <rect x="120" y="153" width="7" height="5" rx="1" fill="#00E5A0" opacity="0.4"/>
+    <rect x="130" y="150" width="7" height="8" rx="1" fill="#00E5A0" opacity="0.7"/>
+    <!-- Brand on body -->
+    <text x="155" y="186" font-family="monospace" font-size="7" fill="#1E2D3D" text-anchor="middle" letter-spacing="4">DRAGONFLY</text>
+    <!-- Right buttons -->
+    <circle cx="268" cy="118" r="6" fill="#0A1210" stroke="#1A2820" stroke-width="1.2"/>
+    <circle cx="268" cy="132" r="6" fill="#0A1210" stroke="#1A2820" stroke-width="1.2"/>
+    <circle cx="268" cy="146" r="6" fill="#0A1210" stroke="#1A2820" stroke-width="1.2"/>
+    <circle cx="268" cy="160" r="6" fill="#0A1210" stroke="#1A2820" stroke-width="1.2"/>
+    <circle cx="268" cy="118" r="2.2" fill="#00E5A0" filter="url(#dfg)"/>
+    <circle cx="268" cy="132" r="1.8" fill="#142018" opacity="0.8"/>
+    <circle cx="268" cy="146" r="1.8" fill="#142018" opacity="0.8"/>
+    <circle cx="268" cy="160" r="1.8" fill="#142018" opacity="0.8"/>
+    <!-- SD slot -->
+    <rect x="256" y="170" width="24" height="8" rx="2" fill="#080C0A" stroke="#1A2820" stroke-width="1"/>
+    <!-- Bolts -->
+    <circle cx="66" cy="107" r="2.5" fill="#0A1210" stroke="#1A2820" stroke-width="0.8"/>
+    <circle cx="290" cy="107" r="2.5" fill="#0A1210" stroke="#1A2820" stroke-width="0.8"/>
+    <circle cx="66" cy="171" r="2.5" fill="#0A1210" stroke="#1A2820" stroke-width="0.8"/>
+    <circle cx="290" cy="171" r="2.5" fill="#0A1210" stroke="#1A2820" stroke-width="0.8"/>
+    <!-- SMA connectors on top -->
+    <circle cx="98" cy="97" r="4" fill="#181810" stroke="#28281A" stroke-width="1"/>
+    <circle cx="98" cy="97" r="2" fill="#0A0A08" stroke="#30301E" stroke-width="0.6"/>
+    <circle cx="124" cy="97" r="4" fill="#181810" stroke="#28281A" stroke-width="1"/>
+    <circle cx="124" cy="97" r="2" fill="#0A0A08" stroke="#30301E" stroke-width="0.6"/>
+    <circle cx="150" cy="97" r="4" fill="#181810" stroke="#28281A" stroke-width="1"/>
+    <circle cx="150" cy="97" r="2" fill="#0A0A08" stroke="#30301E" stroke-width="0.6"/>
+    <!-- ANTENNA 1: left dome -->
+    <rect x="90" y="28" width="10" height="68" rx="3" fill="#131A14" stroke="#1A2418" stroke-width="0.8"/>
+    <ellipse cx="95" cy="26" rx="18" ry="5" fill="#242E22" stroke="#1A2418" stroke-width="1"/>
+    <path d="M77 26 Q77 6 95 3 Q113 6 113 26" fill="#202A1E" stroke="#1A2418" stroke-width="1"/>
+    <path d="M82 20 Q87 10 95 8 Q103 10 108 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.2"/>
+    <circle cx="95" cy="3" r="3.5" fill="#1A2418" stroke="#2A3428" stroke-width="0.8"/>
+    <!-- ANTENNA 2: center quad -->
+    <rect x="145" y="8" width="5" height="87" rx="2" fill="#131A14" stroke="#1A2418" stroke-width="0.6"/>
+    <rect x="141" y="92" width="14" height="7" rx="2" fill="#1A2418" stroke="#2A3428" stroke-width="0.8"/>
+    <line x1="147" y1="38" x2="130" y2="20" stroke="#1A2418" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="147" y1="38" x2="164" y2="20" stroke="#1A2418" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="147" y1="52" x2="132" y2="36" stroke="#1A2418" stroke-width="2" stroke-linecap="round"/>
+    <line x1="147" y1="52" x2="162" y2="36" stroke="#1A2418" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="130" cy="20" r="3.5" fill="#1E2C1C" stroke="#2A3A28" stroke-width="0.8"/>
+    <circle cx="164" cy="20" r="3.5" fill="#1E2C1C" stroke="#2A3A28" stroke-width="0.8"/>
+    <circle cx="132" cy="36" r="3" fill="#1E2C1C" stroke="#2A3A28" stroke-width="0.8"/>
+    <circle cx="162" cy="36" r="3" fill="#1E2C1C" stroke="#2A3A28" stroke-width="0.8"/>
+    <circle cx="147" cy="8" r="3" fill="#1E2C1C" stroke="#00E5A0" stroke-width="0.6" opacity="0.5"/>
+    <circle cx="147" cy="8" r="1.5" fill="#00E5A0" opacity="0.35" filter="url(#dfs)"/>
+    <!-- ANTENNA 3: right whip -->
+    <rect x="197" y="38" width="6" height="58" rx="2.5" fill="#131A14" stroke="#1A2418" stroke-width="0.7"/>
+    <rect x="194" y="92" width="12" height="6" rx="2" fill="#1A2418" stroke="#2A3428" stroke-width="0.8"/>
+    <circle cx="200" cy="37" r="3" fill="#1E2C1C" stroke="#2A3A28" stroke-width="0.7"/>
+    <circle cx="200" cy="35" r="1.2" fill="#00E5A0" opacity="0.25" filter="url(#dfs)"/>
+  </svg>`,
+
+  // Portable detector box with radar screen
+  detector4: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="160">
+    <defs>
+      <filter id="s4g"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <radialGradient id="s4scr" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#00E5A0" stop-opacity="0.15"/>
+        <stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <!-- Device body -->
+    <rect x="60" y="30" width="120" height="140" rx="8" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="60" y="30" width="120" height="140" rx="8" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.3"/>
+    <!-- Screen -->
+    <rect x="72" y="42" width="96" height="72" rx="4" fill="#050A0E" stroke="#1E2D3D" stroke-width="1"/>
+    <rect x="72" y="42" width="96" height="72" rx="4" fill="url(#s4scr)"/>
+    <!-- Radar rings on screen -->
+    <circle cx="120" cy="78" r="10" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.5"/>
+    <circle cx="120" cy="78" r="20" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.3"/>
+    <circle cx="120" cy="78" r="30" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.18"/>
+    <circle cx="120" cy="78" r="40" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.1"/>
+    <!-- Crosshairs -->
+    <line x1="80" y1="78" x2="160" y2="78" stroke="#00E5A0" stroke-width="0.5" opacity="0.35"/>
+    <line x1="120" y1="46" x2="120" y2="110" stroke="#00E5A0" stroke-width="0.5" opacity="0.35"/>
+    <!-- Sweep line -->
+    <line x1="120" y1="78" x2="148" y2="54" stroke="#00E5A0" stroke-width="1" opacity="0.6"/>
+    <!-- Blips -->
+    <circle cx="138" cy="62" r="2.5" fill="#00E5A0" filter="url(#s4g)"/>
+    <circle cx="108" cy="90" r="1.8" fill="#00E5A0" opacity="0.7" filter="url(#s4g)"/>
+    <circle cx="145" cy="82" r="1.4" fill="#00E5A0" opacity="0.5"/>
+    <!-- Center -->
+    <circle cx="120" cy="78" r="2" fill="#00E5A0" filter="url(#s4g)"/>
+    <!-- Freq bars -->
+    <rect x="76" y="120" width="8" height="18" rx="1" fill="#00E5A0" opacity="0.8"/>
+    <rect x="88" y="115" width="8" height="23" rx="1" fill="#00E5A0" opacity="0.6"/>
+    <rect x="100" y="122" width="8" height="16" rx="1" fill="#00E5A0" opacity="0.7"/>
+    <rect x="112" y="118" width="8" height="20" rx="1" fill="#00E5A0" opacity="0.9"/>
+    <rect x="124" y="124" width="8" height="14" rx="1" fill="#00E5A0" opacity="0.5"/>
+    <rect x="136" y="119" width="8" height="19" rx="1" fill="#00E5A0" opacity="0.75"/>
+    <rect x="148" y="121" width="8" height="17" rx="1" fill="#00E5A0" opacity="0.6"/>
+    <!-- Antenna stubs -->
+    <line x1="90" y1="30" x2="82" y2="10" stroke="#1E2D3D" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="150" y1="30" x2="158" y2="10" stroke="#1E2D3D" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="82" cy="10" r="3" fill="#00E5A0" opacity="0.6"/>
+    <circle cx="158" cy="10" r="3" fill="#00E5A0" opacity="0.6"/>
+    <!-- LED dots -->
+    <circle cx="76" cy="156" r="3" fill="#00E5A0" filter="url(#s4g)"/>
+    <circle cx="86" cy="156" r="3" fill="#1E2D3D" stroke="#00E5A0" stroke-width="0.8"/>
+    <!-- Label -->
+    <text x="120" y="170" font-family="monospace" font-size="8" fill="#3A5060" text-anchor="middle" letter-spacing="2">VARTOVYI 4.0</text>
+  </svg>`,
+
+  // Slightly smaller detector — same body, 3 antenna
+  detector3: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="150">
+    <defs>
+      <filter id="s3g"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <rect x="65" y="36" width="110" height="130" rx="8" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="65" y="36" width="110" height="130" rx="8" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.25"/>
+    <rect x="76" y="48" width="88" height="66" rx="4" fill="#050A0E" stroke="#1E2D3D" stroke-width="1"/>
+    <circle cx="120" cy="81" r="9" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.5"/>
+    <circle cx="120" cy="81" r="18" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.3"/>
+    <circle cx="120" cy="81" r="27" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.15"/>
+    <line x1="80" y1="81" x2="160" y2="81" stroke="#00E5A0" stroke-width="0.5" opacity="0.3"/>
+    <line x1="120" y1="52" x2="120" y2="110" stroke="#00E5A0" stroke-width="0.5" opacity="0.3"/>
+    <line x1="120" y1="81" x2="143" y2="60" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+    <circle cx="140" cy="63" r="2.2" fill="#00E5A0" filter="url(#s3g)"/>
+    <circle cx="105" cy="88" r="1.6" fill="#00E5A0" opacity="0.6" filter="url(#s3g)"/>
+    <circle cx="120" cy="81" r="1.8" fill="#00E5A0" filter="url(#s3g)"/>
+    <!-- 3 freq bars groups -->
+    <rect x="80" y="122" width="6" height="14" rx="1" fill="#00E5A0" opacity="0.7"/>
+    <rect x="89" y="118" width="6" height="18" rx="1" fill="#00E5A0" opacity="0.9"/>
+    <rect x="98" y="120" width="6" height="16" rx="1" fill="#00E5A0" opacity="0.6"/>
+    <rect x="115" y="123" width="6" height="13" rx="1" fill="#00E5A0" opacity="0.8"/>
+    <rect x="124" y="119" width="6" height="17" rx="1" fill="#00E5A0" opacity="0.5"/>
+    <rect x="141" y="121" width="6" height="15" rx="1" fill="#00E5A0" opacity="0.7"/>
+    <rect x="150" y="117" width="6" height="19" rx="1" fill="#00E5A0" opacity="0.6"/>
+    <!-- 3 antennas -->
+    <line x1="88" y1="36" x2="82" y2="14" stroke="#1E2D3D" stroke-width="2" stroke-linecap="round"/>
+    <line x1="120" y1="36" x2="120" y2="12" stroke="#1E2D3D" stroke-width="2" stroke-linecap="round"/>
+    <line x1="152" y1="36" x2="158" y2="14" stroke="#1E2D3D" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="82" cy="14" r="2.5" fill="#00E5A0" opacity="0.5"/>
+    <circle cx="120" cy="12" r="2.5" fill="#00E5A0" opacity="0.7"/>
+    <circle cx="158" cy="14" r="2.5" fill="#00E5A0" opacity="0.5"/>
+    <circle cx="76" cy="152" r="2.5" fill="#00E5A0" filter="url(#s3g)"/>
+    <circle cx="84" cy="152" r="2.5" fill="#1E2D3D" stroke="#00E5A0" stroke-width="0.8"/>
+    <text x="120" y="168" font-family="monospace" font-size="8" fill="#3A5060" text-anchor="middle" letter-spacing="2">VARTOVYI 3.0</text>
+  </svg>`,
+
+  // Compact pocket detector — 2 antennas
+  detector2: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="130">
+    <defs>
+      <filter id="s2g"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <rect x="75" y="42" width="90" height="118" rx="10" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="75" y="42" width="90" height="118" rx="10" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.2"/>
+    <rect x="84" y="52" width="72" height="56" rx="4" fill="#050A0E" stroke="#1E2D3D" stroke-width="1"/>
+    <circle cx="120" cy="80" r="8" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.5"/>
+    <circle cx="120" cy="80" r="16" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.28"/>
+    <circle cx="120" cy="80" r="24" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.12"/>
+    <line x1="88" y1="80" x2="152" y2="80" stroke="#00E5A0" stroke-width="0.5" opacity="0.3"/>
+    <line x1="120" y1="56" x2="120" y2="104" stroke="#00E5A0" stroke-width="0.5" opacity="0.3"/>
+    <line x1="120" y1="80" x2="138" y2="64" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+    <circle cx="136" cy="66" r="2" fill="#00E5A0" filter="url(#s2g)"/>
+    <circle cx="110" cy="88" r="1.4" fill="#00E5A0" opacity="0.6" filter="url(#s2g)"/>
+    <circle cx="120" cy="80" r="1.6" fill="#00E5A0" filter="url(#s2g)"/>
+    <!-- 2 freq groups -->
+    <rect x="88" y="116" width="7" height="16" rx="1" fill="#00E5A0" opacity="0.8"/>
+    <rect x="98" y="120" width="7" height="12" rx="1" fill="#00E5A0" opacity="0.5"/>
+    <rect x="108" y="118" width="7" height="14" rx="1" fill="#00E5A0" opacity="0.7"/>
+    <rect x="125" y="119" width="7" height="13" rx="1" fill="#00E5A0" opacity="0.9"/>
+    <rect x="135" y="116" width="7" height="16" rx="1" fill="#00E5A0" opacity="0.6"/>
+    <rect x="145" y="121" width="7" height="11" rx="1" fill="#00E5A0" opacity="0.7"/>
+    <!-- 2 antennas -->
+    <line x1="96" y1="42" x2="90" y2="18" stroke="#1E2D3D" stroke-width="2" stroke-linecap="round"/>
+    <line x1="144" y1="42" x2="150" y2="18" stroke="#1E2D3D" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="90" cy="18" r="2.5" fill="#00E5A0" opacity="0.5"/>
+    <circle cx="150" cy="18" r="2.5" fill="#00E5A0" opacity="0.5"/>
+    <circle cx="84" cy="148" r="2.5" fill="#00E5A0" filter="url(#s2g)"/>
+    <text x="120" y="165" font-family="monospace" font-size="8" fill="#3A5060" text-anchor="middle" letter-spacing="2">VARTOVYI 2.0</text>
+  </svg>`,
+
+  // Dome quadrifilar antenna
+  antennaQuad: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="150">
+    <defs>
+      <filter id="aqg"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <radialGradient id="aqglow" cx="50%" cy="40%" r="50%">
+        <stop offset="0%" stop-color="#00E5A0" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#00E5A0" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <!-- Mount base -->
+    <rect x="104" y="148" width="32" height="16" rx="3" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="84" y="160" width="72" height="10" rx="4" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <!-- Pole -->
+    <rect x="118" y="100" width="4" height="52" fill="#121A22" stroke="#1E2D3D" stroke-width="1"/>
+    <!-- Dome body -->
+    <ellipse cx="120" cy="100" rx="52" ry="14" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <!-- Dome top arc -->
+    <path d="M68 100 Q68 46 120 42 Q172 46 172 100" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <path d="M68 100 Q68 46 120 42 Q172 46 172 100" fill="url(#aqglow)"/>
+    <!-- Signal rings emanating -->
+    <ellipse cx="120" cy="100" rx="60" ry="18" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.2"/>
+    <ellipse cx="120" cy="100" rx="72" ry="24" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.12"/>
+    <!-- 4 helix elements on dome -->
+    <line x1="120" y1="42" x2="88" y2="68" stroke="#00E5A0" stroke-width="1.2" opacity="0.7"/>
+    <line x1="120" y1="42" x2="152" y2="68" stroke="#00E5A0" stroke-width="1.2" opacity="0.7"/>
+    <line x1="120" y1="42" x2="96" y2="90" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+    <line x1="120" y1="42" x2="144" y2="90" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+    <!-- Element tips -->
+    <circle cx="88" cy="68" r="3" fill="#00E5A0" opacity="0.8" filter="url(#aqg)"/>
+    <circle cx="152" cy="68" r="3" fill="#00E5A0" opacity="0.8" filter="url(#aqg)"/>
+    <circle cx="96" cy="90" r="2.5" fill="#00E5A0" opacity="0.6" filter="url(#aqg)"/>
+    <circle cx="144" cy="90" r="2.5" fill="#00E5A0" opacity="0.6" filter="url(#aqg)"/>
+    <!-- Center peak -->
+    <circle cx="120" cy="42" r="4" fill="#00E5A0" filter="url(#aqg)"/>
+    <!-- Connector -->
+    <rect x="117" y="156" width="6" height="8" rx="1" fill="#00E5A0" opacity="0.4"/>
+    <text x="120" y="178" font-family="monospace" font-size="8" fill="#3A5060" text-anchor="middle" letter-spacing="1">QUADRIFILAR 4in1</text>
+  </svg>`,
+
+  // Flat sector panel antenna
+  antennaSector: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="160">
+    <defs>
+      <filter id="asg"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <!-- Mount arm -->
+    <rect x="114" y="138" width="12" height="32" rx="3" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="100" y="164" width="40" height="8" rx="3" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <!-- Panel body -->
+    <rect x="68" y="28" width="104" height="114" rx="6" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="68" y="28" width="104" height="114" rx="6" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.2"/>
+    <!-- Inner frame -->
+    <rect x="76" y="36" width="88" height="98" rx="4" fill="#080C10" stroke="#1E2D3D" stroke-width="1"/>
+    <!-- Patch elements grid (5x4) -->
+    <g opacity="0.5" stroke="#00E5A0" stroke-width="0.6" fill="none">
+      <rect x="82" y="42" width="16" height="16" rx="2"/><rect x="102" y="42" width="16" height="16" rx="2"/>
+      <rect x="122" y="42" width="16" height="16" rx="2"/><rect x="142" y="42" width="16" height="16" rx="2"/>
+      <rect x="82" y="62" width="16" height="16" rx="2"/><rect x="102" y="62" width="16" height="16" rx="2"/>
+      <rect x="122" y="62" width="16" height="16" rx="2"/><rect x="142" y="62" width="16" height="16" rx="2"/>
+      <rect x="82" y="82" width="16" height="16" rx="2"/><rect x="102" y="82" width="16" height="16" rx="2"/>
+      <rect x="122" y="82" width="16" height="16" rx="2"/><rect x="142" y="82" width="16" height="16" rx="2"/>
+      <rect x="82" y="102" width="16" height="16" rx="2"/><rect x="102" y="102" width="16" height="16" rx="2"/>
+      <rect x="122" y="102" width="16" height="16" rx="2"/><rect x="142" y="102" width="16" height="16" rx="2"/>
+      <!-- Center cross on each patch -->
+      <line x1="82" y1="50" x2="98" y2="50"/><line x1="90" y1="42" x2="90" y2="58"/>
+      <line x1="122" y1="50" x2="138" y2="50"/><line x1="130" y1="42" x2="130" y2="58"/>
+      <line x1="102" y1="90" x2="118" y2="90"/><line x1="110" y1="82" x2="110" y2="98"/>
+      <line x1="142" y1="90" x2="158" y2="90"/><line x1="150" y1="82" x2="150" y2="98"/>
+    </g>
+    <!-- Active center glow -->
+    <rect x="102" y="62" width="16" height="16" rx="2" fill="#00E5A0" opacity="0.08"/>
+    <rect x="122" y="62" width="16" height="16" rx="2" fill="#00E5A0" opacity="0.08"/>
+    <rect x="102" y="82" width="16" height="16" rx="2" fill="#00E5A0" opacity="0.06"/>
+    <rect x="122" y="82" width="16" height="16" rx="2" fill="#00E5A0" opacity="0.06"/>
+    <!-- Beam indicator -->
+    <circle cx="120" cy="80" r="3" fill="#00E5A0" filter="url(#asg)"/>
+    <!-- SMA connector -->
+    <rect x="116" y="136" width="8" height="6" rx="1" fill="#00E5A0" opacity="0.5"/>
+    <text x="120" y="178" font-family="monospace" font-size="8" fill="#3A5060" text-anchor="middle" letter-spacing="1">SECTOR 5.8 GHz</text>
+  </svg>`,
+
+  // Helix coil antenna
+  antennaHelix: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="120">
+    <defs>
+      <filter id="ahg"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <!-- Base connector -->
+    <rect x="104" y="148" width="32" height="20" rx="4" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="112" y="168" width="16" height="8" rx="2" fill="#1E2D3D"/>
+    <circle cx="120" cy="172" r="4" fill="none" stroke="#00E5A0" stroke-width="1" opacity="0.5"/>
+    <!-- Support rod -->
+    <rect x="119" y="28" width="2" height="124" fill="#1E2D3D"/>
+    <!-- Helix coils — drawn as arcs -->
+    <path d="M120 132 Q142 128 142 120 Q142 112 120 108 Q98 104 98 96 Q98 88 120 84 Q142 80 142 72 Q142 64 120 60 Q98 56 98 48 Q98 40 120 36" fill="none" stroke="#00E5A0" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+    <path d="M120 132 Q98 128 98 120 Q98 112 120 108 Q142 104 142 96 Q142 88 120 84 Q98 80 98 72 Q98 64 120 60 Q142 56 142 48 Q142 40 120 36" fill="none" stroke="#00E5A0" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+    <!-- Signal waves -->
+    <ellipse cx="120" cy="28" rx="32" ry="8" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.4"/>
+    <ellipse cx="120" cy="18" rx="44" ry="10" fill="none" stroke="#00E5A0" stroke-width="0.6" opacity="0.25"/>
+    <ellipse cx="120" cy="8" rx="56" ry="12" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.12"/>
+    <!-- Tip glow -->
+    <circle cx="120" cy="28" r="3.5" fill="#00E5A0" filter="url(#ahg)"/>
+    <!-- Connector pin -->
+    <circle cx="120" cy="152" r="3" fill="#00E5A0" opacity="0.5"/>
+    <text x="120" y="178" font-family="monospace" font-size="8" fill="#3A5060" text-anchor="middle" letter-spacing="1">HELIX 5.8GHz</text>
+  </svg>`,
+
+  // Coax cable with connectors
+  cable: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="170">
+    <defs>
+      <filter id="cg"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <!-- Left SMA connector -->
+    <rect x="14" y="78" width="28" height="24" rx="4" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="14" y="78" width="28" height="24" rx="4" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.3"/>
+    <rect x="6" y="84" width="10" height="12" rx="2" fill="#121A22" stroke="#1E2D3D" stroke-width="1"/>
+    <circle cx="11" cy="90" r="3" fill="#00E5A0" opacity="0.6" filter="url(#cg)"/>
+    <!-- Threading lines -->
+    <line x1="16" y1="82" x2="16" y2="98" stroke="#1E2D3D" stroke-width="1.5"/>
+    <line x1="20" y1="80" x2="20" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="24" y1="80" x2="24" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="28" y1="80" x2="28" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="32" y1="80" x2="32" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="36" y1="80" x2="36" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <!-- Cable body with slight curve -->
+    <path d="M42 90 C80 90, 80 72, 120 72 C160 72, 160 90, 198 90" fill="none" stroke="#1E2D3D" stroke-width="10" stroke-linecap="round"/>
+    <path d="M42 90 C80 90, 80 72, 120 72 C160 72, 160 90, 198 90" fill="none" stroke="#121A22" stroke-width="7" stroke-linecap="round"/>
+    <path d="M42 90 C80 90, 80 72, 120 72 C160 72, 160 90, 198 90" fill="none" stroke="#00E5A0" stroke-width="1.5" stroke-linecap="round" opacity="0.25" stroke-dasharray="4 6"/>
+    <!-- Right SMA connector -->
+    <rect x="198" y="78" width="28" height="24" rx="4" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="198" y="78" width="28" height="24" rx="4" fill="none" stroke="#00E5A0" stroke-width="0.5" opacity="0.3"/>
+    <rect x="224" y="84" width="10" height="12" rx="2" fill="#121A22" stroke="#1E2D3D" stroke-width="1"/>
+    <circle cx="229" cy="90" r="3" fill="#00E5A0" opacity="0.6" filter="url(#cg)"/>
+    <line x1="202" y1="82" x2="202" y2="98" stroke="#1E2D3D" stroke-width="1.5"/>
+    <line x1="206" y1="80" x2="206" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="210" y1="80" x2="210" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="214" y1="80" x2="214" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="218" y1="80" x2="218" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="222" y1="80" x2="222" y2="100" stroke="#1E2D3D" stroke-width="1"/>
+    <!-- Length label -->
+    <line x1="42" y1="116" x2="198" y2="116" stroke="#1E2D3D" stroke-width="0.8" stroke-dasharray="3 3"/>
+    <line x1="42" y1="112" x2="42" y2="120" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="198" y1="112" x2="198" y2="120" stroke="#1E2D3D" stroke-width="1"/>
+    <text x="120" y="130" font-family="monospace" font-size="9" fill="#3A5060" text-anchor="middle" letter-spacing="1">5m / SMA-SMA</text>
+    <text x="120" y="148" font-family="monospace" font-size="8" fill="#2A4050" text-anchor="middle">loss: ≈1.83dB @ 1.2GHz</text>
+    <text x="120" y="170" font-family="monospace" font-size="8" fill="#3A5060" text-anchor="middle" letter-spacing="1">ANTENNA CABLE</text>
+  </svg>`,
+
+  // Vehicle mount — bracket with suction cups
+  mount: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="160">
+    <defs>
+      <filter id="mg"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <!-- Glass surface (window) -->
+    <rect x="20" y="20" width="200" height="100" rx="4" fill="#080C10" stroke="#1E2D3D" stroke-width="1"/>
+    <line x1="20" y1="20" x2="220" y2="120" stroke="#0D1318" stroke-width="40"/>
+    <text x="120" y="75" font-family="monospace" font-size="9" fill="#1E2D3D" text-anchor="middle" letter-spacing="1">// VEHICLE GLASS</text>
+    <!-- Suction cup left -->
+    <ellipse cx="72" cy="122" rx="22" ry="6" fill="#0D1318" stroke="#00E5A0" stroke-width="1" opacity="0.8"/>
+    <ellipse cx="72" cy="120" rx="18" ry="5" fill="#080C10" stroke="#00E5A0" stroke-width="0.7" opacity="0.5"/>
+    <circle cx="72" cy="120" r="5" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.4"/>
+    <!-- Suction cup right -->
+    <ellipse cx="168" cy="122" rx="22" ry="6" fill="#0D1318" stroke="#00E5A0" stroke-width="1" opacity="0.8"/>
+    <ellipse cx="168" cy="120" rx="18" ry="5" fill="#080C10" stroke="#00E5A0" stroke-width="0.7" opacity="0.5"/>
+    <circle cx="168" cy="120" r="5" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.4"/>
+    <!-- Arm -->
+    <rect x="66" y="118" width="108" height="8" rx="4" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <!-- Vertical post -->
+    <rect x="114" y="126" width="12" height="36" rx="3" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <!-- Device mount plate -->
+    <rect x="86" y="154" width="68" height="18" rx="4" fill="#0D1318" stroke="#1E2D3D" stroke-width="1.5"/>
+    <rect x="86" y="154" width="68" height="18" rx="4" fill="none" stroke="#00E5A0" stroke-width="0.4" opacity="0.25"/>
+    <!-- Device outline placeholder -->
+    <rect x="94" y="157" width="52" height="12" rx="2" fill="#080C10" stroke="#00E5A0" stroke-width="0.6" opacity="0.4" stroke-dasharray="2 2"/>
+    <!-- Lock bolts -->
+    <circle cx="92" cy="163" r="3" fill="#121A22" stroke="#1E2D3D" stroke-width="1"/>
+    <circle cx="148" cy="163" r="3" fill="#121A22" stroke="#1E2D3D" stroke-width="1"/>
+    <!-- Green LED -->
+    <circle cx="120" cy="163" r="2.5" fill="#00E5A0" filter="url(#mg)"/>
+    <text x="120" y="178" font-family="monospace" font-size="8" fill="#3A5060" text-anchor="middle" letter-spacing="1">VEHICLE MOUNT</text>
+  </svg>`,
+};
+
+const products = [
+  {
+    id: 0, cat: 'detector', svgKey: 'dragonfly',
+    name_ua: 'Детектор БПЛА «Dragonfly»',
+    name_en: 'UAV Detector "Dragonfly"',
+    desc_ua: 'Флагманська система радіоелектронної розвідки з RF-сканером, пасивним виявленням та визначенням напряму на БПЛА. Польова готовність.',
+    desc_en: 'Flagship radio intelligence system with RF scanner, passive detection and drone direction finding. Field ready.',
+    specs_ua: [['Режим','RF Scanner + Passive'],['Діапазони','4-Band'],['Функція','Direction Finding'],['Статус','Field Ready']],
+    specs_en: [['Mode','RF Scanner + Passive'],['Bands','4-Band'],['Function','Direction Finding'],['Status','Field Ready']],
+    price: 'За запитом', nato: true, badge_ua: 'ФЛАГМАН', badge_en: 'FLAGSHIP',
+  },
+  {
+    id: 1, cat: 'detector', svgKey: 'detector4',
+    name_ua: 'Детектор БПЛА «Вартовий 4.0»',
+    name_en: 'UAV Detector "Vartovyi 4.0"',
+    desc_ua: 'Чотиридіапазонний портативний детектор FPV-дронів із пасивним виявленням аналогового відеосигналу в режимі реального часу.',
+    desc_en: 'Four-band portable FPV drone detector with passive real-time analog video signal detection.',
+    specs_ua: [['Діапазони','1.2 / 2.4 / 5.8 ГГц + відео'],['Режим','Пасивний'],['Живлення','Акумулятор 8 год'],['Вихід','Відеовихід CVBS']],
+    specs_en: [['Bands','1.2 / 2.4 / 5.8 GHz + video'],['Mode','Passive'],['Power','Battery 8h'],['Output','CVBS video out']],
+    price: '42 000 грн', nato: true, badge_ua: 'НОВИНКА', badge_en: 'NEW',
+  },
+  {
+    id: 2, cat: 'detector', svgKey: 'detector3',
+    name_ua: 'Детектор БПЛА «Вартовий 3.0»',
+    name_en: 'UAV Detector "Vartovyi 3.0"',
+    desc_ua: 'Тридіапазонний портативний детектор. Пасивне виявлення та перехоплення аналогового відеосигналу FPV-БПЛА.',
+    desc_en: 'Three-band portable detector. Passive detection and interception of FPV UAV analog video signal.',
+    specs_ua: [['Діапазони','1.2 / 2.4 / 5.8 ГГц'],['Режим','Пасивний'],['Живлення','Акумулятор 10 год'],['Кодифікація','НАТО']],
+    specs_en: [['Bands','1.2 / 2.4 / 5.8 GHz'],['Mode','Passive'],['Power','Battery 10h'],['Codification','NATO']],
+    price: '28 000 грн', nato: true, badge_ua: '', badge_en: '',
+  },
+  {
+    id: 3, cat: 'detector', svgKey: 'detector2',
+    name_ua: 'Детектор БПЛА «Вартовий 2.0»',
+    name_en: 'UAV Detector "Vartovyi 2.0"',
+    desc_ua: 'Дводіапазонний портативний детектор для раннього виявлення FPV-активності. Простий у використанні.',
+    desc_en: 'Two-band portable detector for early FPV activity detection. Simple to use.',
+    specs_ua: [['Діапазони','2.4 / 5.8 ГГц'],['Режим','Пасивний'],['Живлення','Акумулятор 12 год'],['Форм-фактор','Кишеньковий']],
+    specs_en: [['Bands','2.4 / 5.8 GHz'],['Mode','Passive'],['Power','Battery 12h'],['Form factor','Pocket']],
+    price: '19 500 грн', nato: false, badge_ua: '', badge_en: '',
+  },
+  {
+    id: 4, cat: 'antenna', svgKey: 'antennaQuad',
+    name_ua: 'Антена квадрифілярна «4 в 1»',
+    name_en: 'Quadrifilar antenna "4 in 1"',
+    desc_ua: 'Купольна антена для РЕБ-систем протидії FPV-дронам із круговою поляризацією. Потужність до 100 Вт.',
+    desc_en: 'Dome antenna for EW systems against FPV drones with circular polarization. Up to 100W power.',
+    specs_ua: [['Тип','Квадрифіляр'],['Поляризація','Кругова RHCP'],['Потужність','до 100 Вт'],['Частоти','4 діапазони']],
+    specs_en: [['Type','Quadrifilar'],['Polarization','Circular RHCP'],['Power','up to 100W'],['Bands','4 bands']],
+    price: '12 500 грн', nato: false, badge_ua: '', badge_en: '',
+  },
+  {
+    id: 5, cat: 'antenna', svgKey: 'antennaSector',
+    name_ua: 'Антена секторна 5.8 ГГц',
+    name_en: 'Sector antenna 5.8 GHz',
+    desc_ua: 'Спрямована секторна антена для РЕБ-систем проти дронів DJI Mavic. Лінійна вертикальна поляризація.',
+    desc_en: 'Directional sector antenna for EW systems against DJI Mavic drones. Linear vertical polarization.',
+    specs_ua: [['Частота','5.8 ГГц'],['Поляризація','Лінійна вертикальна'],['Потужність','50 Вт'],['Тип','Секторна']],
+    specs_en: [['Frequency','5.8 GHz'],['Polarization','Linear vertical'],['Power','50W'],['Type','Sector']],
+    price: '4 800 грн', nato: false, badge_ua: '', badge_en: '',
+  },
+  {
+    id: 6, cat: 'antenna', svgKey: 'antennaHelix',
+    name_ua: 'HELIX антена 5.8 ГГц',
+    name_en: 'HELIX antenna 5.8 GHz',
+    desc_ua: 'Антена для передачі та прийому сигналу з круговою правою поляризацією для FPV-систем.',
+    desc_en: 'Antenna for signal transmission and reception with right-hand circular polarization for FPV systems.',
+    specs_ua: [['Частота','5.8 ГГц'],['Поляризація','Кругова RHCP'],['Посилення','12 dBi'],['Роз\'єм','SMA']],
+    specs_en: [['Frequency','5.8 GHz'],['Polarization','Circular RHCP'],['Gain','12 dBi'],['Connector','SMA']],
+    price: '2 100 грн', nato: false, badge_ua: '', badge_en: '',
+  },
+  {
+    id: 7, cat: 'accessory', svgKey: 'cable',
+    name_ua: 'Антенний кабель 5 метрів',
+    name_en: 'Antenna cable 5 meters',
+    desc_ua: 'Кабель для з\'єднання детекторів дронів і РЕБ-систем із виносними антенами для підвищення якості сигналу.',
+    desc_en: 'Cable for connecting drone detectors and EW systems with remote antennas to improve signal quality.',
+    specs_ua: [['Довжина','5 метрів'],['Втрата 1.2 ГГц','≈1.83 дБ'],['Втрата 5.8 ГГц','≈4.2 дБ'],['Роз\'єм','SMA-SMA']],
+    specs_en: [['Length','5 meters'],['Loss 1.2 GHz','≈1.83 dB'],['Loss 5.8 GHz','≈4.2 dB'],['Connector','SMA-SMA']],
+    price: '5 000 грн', nato: false, badge_ua: '', badge_en: '',
+  },
+  {
+    id: 8, cat: 'accessory', svgKey: 'mount',
+    name_ua: 'Автомобільний тримач «Вартовий»',
+    name_en: '"Vartovyi" vehicle mount',
+    desc_ua: 'Кріплення на присосках для швидкого встановлення детектора дронів в авто з можливістю оперативного зняття.',
+    desc_en: 'Suction cup mount for quick installation of drone detector in vehicle with quick-release option.',
+    specs_ua: [['Тип','Присосковий'],['Сумісність','Вартовий 2.0 / 3.0 / 4.0'],['Матеріал','ABS + гума'],['Монтаж','Без інструментів']],
+    specs_en: [['Type','Suction cup'],['Compatibility','Vartovyi 2.0/3.0/4.0'],['Material','ABS + rubber'],['Install','Tool-free']],
+    price: '2 400 грн', nato: false, badge_ua: '', badge_en: '',
+  },
+];
+
+let currentLang = 'ua';
+let currentFilter = 'all';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  applyLang();
+  renderProducts();
+}
+
+function applyLang() {
+  const t = T[currentLang];
+  // nav
+  const navIds = ['nav-catalog','nav-about','nav-how','nav-contact'];
+  navIds.forEach((id,i) => { const el = document.getElementById(id); if(el) el.textContent = t.nav[i]; });
+  const mIds = ['m-catalog','m-about','m-how','m-contact'];
+  mIds.forEach((id,i) => { const el = document.getElementById(id); if(el) el.textContent = t.nav[i]; });
+  document.getElementById('cta-header-btn').textContent = t.cta_header;
+  document.getElementById('hero-badge').innerHTML = t.hero_badge;
+  document.getElementById('hero-h1').innerHTML = `${t.hero_h1[0]}<em>${t.hero_h1[1]}</em>`;
+  document.getElementById('hero-sub').textContent = t.hero_sub;
+  document.getElementById('hero-cta1').textContent = t.hero_cta1;
+  document.getElementById('hero-cta2').textContent = t.hero_cta2;
+  document.getElementById('radar-label').textContent = t.radar_label;
+  const statIds = ['stat1','stat2','stat3','stat4'];
+  statIds.forEach((id,i) => { const el = document.getElementById(id); if(el) el.textContent = t.stats[i]; });
+  document.getElementById('eyebrow-cat').textContent = t.eyebrow_cat;
+  document.getElementById('title-cat').textContent = t.title_cat;
+  document.getElementById('link-request').textContent = t.link_request;
+  const tabIds = ['tab-all','tab-det','tab-ant','tab-acc'];
+  tabIds.forEach((id,i) => { const el = document.getElementById(id); if(el) el.textContent = t.tabs[i]; });
+  document.getElementById('eyebrow-feat').textContent = t.eyebrow_feat;
+  document.getElementById('title-feat').textContent = t.title_feat;
+  for(let i=1;i<=6;i++) {
+    const ft = document.getElementById(`feat${i}-t`);
+    const fd = document.getElementById(`feat${i}-d`);
+    if(ft) ft.textContent = t.feats[i-1][0];
+    if(fd) fd.textContent = t.feats[i-1][1];
+  }
+  document.getElementById('eyebrow-how').textContent = t.eyebrow_how;
+  document.getElementById('title-how').textContent = t.title_how;
+  for(let i=1;i<=4;i++) {
+    const st = document.getElementById(`step${i}-t`);
+    const sd = document.getElementById(`step${i}-d`);
+    if(st) st.textContent = t.steps[i-1][0];
+    if(sd) sd.textContent = t.steps[i-1][1];
+  }
+  document.getElementById('eyebrow-about').textContent = t.eyebrow_about;
+  document.getElementById('title-about').textContent = t.title_about;
+  const sceneEyebrow = document.getElementById('eyebrow-scene');
+  const sceneTitle = document.getElementById('title-scene');
+  const sceneDesc = document.getElementById('scene-desc');
+  if(sceneEyebrow) sceneEyebrow.textContent = t.eyebrow_scene;
+  if(sceneTitle) sceneTitle.innerHTML = t.title_scene;
+  if(sceneDesc) sceneDesc.textContent = t.scene_desc;
+  ['ss1','ss2','ss3'].forEach((id,i) => { const el = document.getElementById(id); if(el) el.textContent = t.scene_stats[i]; });
+  const intEyebrow = document.getElementById('eyebrow-intercept');
+  const intTitle = document.getElementById('title-intercept');
+  const intDesc = document.getElementById('desc-intercept');
+  if(intEyebrow) intEyebrow.textContent = t.eyebrow_intercept;
+  if(intTitle) intTitle.textContent = t.title_intercept;
+  if(intDesc) intDesc.textContent = t.desc_intercept;
+  const ei = document.getElementById('eyebrow-intercept');
+  const ti = document.getElementById('title-intercept');
+  const di = document.getElementById('desc-intercept');
+  const bi = document.getElementById('btn-intercept');
+  if(ei) ei.textContent = t.eyebrow_intercept;
+  if(ti) ti.innerHTML = t.title_intercept;
+  if(di) di.textContent = t.desc_intercept;
+  if(bi) bi.textContent = t.btn_intercept;
+  document.getElementById('about-p1').textContent = t.about_p1;
+  document.getElementById('about-quote').textContent = t.about_quote;
+  document.getElementById('about-p2').textContent = t.about_p2;
+  document.getElementById('eyebrow-con').textContent = t.eyebrow_con;
+  document.getElementById('title-con').textContent = t.title_con;
+  document.getElementById('con-h3').textContent = t.con_h3;
+  document.getElementById('con-p').textContent = t.con_p;
+  ['ci1-l','ci2-l','ci3-l'].forEach((id,i) => { const el = document.getElementById(id); if(el) el.textContent = t.ci_labels[i]; });
+  document.getElementById('ci3-v').textContent = t.ci3_v;
+  document.getElementById('fl-name').textContent = t.form_labels[0];
+  document.getElementById('fl-phone').textContent = t.form_labels[1];
+  document.getElementById('fl-cat').textContent = t.form_labels[2];
+  document.getElementById('fl-msg').textContent = t.form_labels[3];
+  document.getElementById('fi-name').placeholder = t.form_placeholders[0];
+  document.getElementById('fi-phone').placeholder = t.form_placeholders[1];
+  document.getElementById('fi-msg').placeholder = t.form_placeholders[2];
+  const foptIds = ['fopt0','fopt1','fopt2','fopt3','fopt4','fopt5'];
+  foptIds.forEach((id,i) => { const el = document.getElementById(id); if(el) el.textContent = t.cat_options[i]; });
+  document.getElementById('btn-submit').textContent = t.btn_submit;
+  document.getElementById('footer-desc').textContent = t.footer_desc;
+  ['fc1-t','fc2-t','fc3-t'].forEach((id,i) => { const el = document.getElementById(id); if(el) el.textContent = t.fc_titles[i]; });
+  t.fc1.forEach((txt,i) => { const el = document.getElementById(`fc1-${i+1}`); if(el) el.textContent = txt; });
+  t.fc2.forEach((txt,i) => { const el = document.getElementById(`fc2-${i+1}`); if(el) el.textContent = txt; });
+  document.getElementById('footer-copy').textContent = t.footer_copy;
+  document.getElementById('fl-priv').textContent = t.fl[0];
+  document.getElementById('fl-terms').textContent = t.fl[1];
+}
+
+function renderProducts() {
+  const t = T[currentLang];
+  const grid = document.getElementById('productsGrid');
+  const filtered = currentFilter === 'all' ? products : products.filter(p => p.cat === currentFilter);
+
+  grid.innerHTML = filtered.map(p => {
+    const name = currentLang === 'ua' ? p.name_ua : p.name_en;
+    const desc = currentLang === 'ua' ? p.desc_ua : p.desc_en;
+    const badge = currentLang === 'ua' ? p.badge_ua : p.badge_en;
+    const specs = (currentLang === 'ua' ? p.specs_ua : p.specs_en).map(s => s[0]);
+    const isFeatured = p.id === 0;
+
+    const featBanner = isFeatured ? `
+      <div class="flagship-banner">
+        <div class="flagship-stat"><div class="flagship-stat-num">4</div><div class="flagship-stat-label">${currentLang==='ua'?'ДІАПАЗОНИ':'BANDS'}</div></div>
+        <div class="flagship-stat"><div class="flagship-stat-num">360°</div><div class="flagship-stat-label">${currentLang==='ua'?'ПОКРИТТЯ':'COVERAGE'}</div></div>
+        <div class="flagship-stat"><div class="flagship-stat-num">RF</div><div class="flagship-stat-label">${currentLang==='ua'?'СКАНЕР':'SCANNER'}</div></div>
+        <div class="flagship-stat"><div class="flagship-stat-num">DF</div><div class="flagship-stat-label">${currentLang==='ua'?'ПЕЛЕНГАЦІЯ':'DIRECTION'}</div></div>
+      </div>` : '';
+
+    return `
+      <div class="product-card${isFeatured ? ' featured' : ''}" onclick="openModal(${p.id})">
+        <div class="product-img" style="background:#080C10;">
+          ${SVG[p.svgKey] || ''}
+          ${badge ? `<div class="product-badge">${badge}</div>` : ''}
+          ${p.nato ? `<div class="product-nato">NATO</div>` : ''}
+        </div>
+        ${featBanner}
+        <div class="product-body">
+          <div class="product-name">${name}</div>
+          <div class="product-desc">${desc}</div>
+          <div class="product-specs">
+            ${specs.slice(0,3).map(s => `<span class="spec-tag">${s}</span>`).join('')}
+          </div>
+          <div class="product-footer">
+            <div>
+              <span class="product-price-label">${currentLang==='ua'?'Ціна':'Price'}</span>
+              <span class="product-price">${p.price}</span>
+            </div>
+            <button class="btn-card">${t.more}</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function filterCat(cat) {
+  currentFilter = cat;
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  renderProducts();
+}
+
+function openModal(id) {
+  const p = products.find(x => x.id === id);
+  const t = T[currentLang];
+  const name = currentLang === 'ua' ? p.name_ua : p.name_en;
+  const desc = currentLang === 'ua' ? p.desc_ua : p.desc_en;
+  const specs = currentLang === 'ua' ? p.specs_ua : p.specs_en;
+  document.getElementById('modalTitle').textContent = name;
+  document.getElementById('modalImg').innerHTML = SVG[p.svgKey] || '';
+  document.getElementById('modalImg').style.fontSize = '0';
+  document.getElementById('modalDesc').textContent = desc;
+  document.getElementById('modalPrice').textContent = p.price;
+  document.getElementById('modalPriceLabel').textContent = t.modal_price_label;
+  document.getElementById('modalCta').textContent = t.modal_cta;
+  document.getElementById('modalSpecs').innerHTML = specs.map(([k,v]) => `
+    <div class="modal-spec">
+      <div class="modal-spec-label">${k}</div>
+      <div class="modal-spec-value">${v}</div>
+    </div>`).join('');
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if(e.target === document.getElementById('modalOverlay'))
+    document.getElementById('modalOverlay').classList.remove('open');
+}
+
+function closeModalDirect() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+function closeMenu() {
+  document.getElementById('mobileNav').classList.remove('open');
+}
+
+function submitForm() {
+  const btn = document.getElementById('btn-submit');
+  btn.textContent = currentLang === 'ua' ? '✓ Надіслано!' : '✓ Sent!';
+  btn.style.background = '#007A54';
+  setTimeout(() => {
+    btn.textContent = T[currentLang].btn_submit;
+    btn.style.background = '';
+  }, 3000);
+}
+
+// Init
+renderProducts();
+</script>
+</body>
+</html>
